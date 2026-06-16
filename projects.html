@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Technical projects and systems delivery by Sunish Bharathan - Technical Program Manager.">
+  <title>Projects &amp; Delivery | Sunish Bharathan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-content">
+        <a href="index.html" class="site-title" aria-label="Sunish Bharathan Homepage">
+          Sunish Bharathan
+          <span>Leads programs. Writes code. Delivers AI.</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <section aria-labelledby="heading-projects-page">
+        <h1 id="heading-projects-page">Projects &amp; Systems Delivery</h1>
+        <p class="lead-text">
+          A showcase of both hand-built AI applications and large-scale technical systems delivery. I specialize in merging hands-on software development with rigorous regulatory and program governance.
+        </p>
+
+        <div class="list-container" style="margin-top: 2.5rem;">
+          
+          <!-- PROJECT 1 -->
+          <article id="project-1" class="item-card">
+            <h2>AtlasMind — Production AI Assistant</h2>
+            <p>
+              A live natural language to JQL (Jira Query Language) assistant using RAG (Retrieval-Augmented Generation) and pgvector. It features a two-stage router that bypasses the JQL parser for general inquiries. It contains a self-healing loop: when a query fails validation, the error is fed back to the LLM for automatic query correction (up to 4 retry cycles). Operates with 5 runtime-switchable LLM backends.
+            </p>
+            <ul class="item-tags" aria-label="Technologies used">
+              <li>Python</li>
+              <li>FastAPI</li>
+              <li>pgvector</li>
+              <li>vLLM</li>
+              <li>Groq</li>
+              <li>AWS Bedrock</li>
+              <li>Tailscale</li>
+              <li>Oracle Cloud (OCI)</li>
+            </ul>
+            <div style="margin-top: 0.75rem;">
+              <a href="https://github.com/sunishbharat/atlasMind-Lite" target="_blank" rel="noopener noreferrer" style="margin-right: 1rem;">View Code (GitHub)</a>
+              <a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">Live Site (atlasmind.de)</a>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article id="project-2" class="item-card">
+            <h2>GPT-2 Transformer From Scratch</h2>
+            <p>
+              Built the complete GPT-2 decoder-only transformer architecture from the ground up in Python. This implementation includes building custom byte-pair tokenization, multi-head causal self-attention modules, feedforward networks, layer normalization, weight initialization, and training/evaluation loops.
+            </p>
+            <ul class="item-tags" aria-label="Technologies used">
+              <li>Python</li>
+              <li>PyTorch</li>
+              <li>Tokenization</li>
+              <li>Transformers</li>
+              <li>Deep Learning</li>
+            </ul>
+            <div style="margin-top: 0.75rem;">
+              <a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">View GitHub Profile</a>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article id="project-3" class="item-card">
+            <h2>Automated ASPICE Compliance Pipeline</h2>
+            <p>
+              Architected and automated an ASPICE validation pipeline for a major VW diagnostic project. By writing custom integration tools and building automated pipelines via Jenkins, compliance cycle times were reduced from 3 weeks of manual auditing to 30 minutes per release, securing a Level 2 assessment and leading to VW awarding next-generation carlines.
+            </p>
+            <ul class="item-tags" aria-label="Technologies used">
+              <li>Jenkins</li>
+              <li>ASPICE L2</li>
+              <li>Python</li>
+              <li>CI/CD Automation</li>
+              <li>VW Diagnostic Protocol</li>
+            </ul>
+          </article>
+
+          <!-- PROJECT 4 -->
+          <article id="project-4" class="item-card">
+            <h2>Qt/C++ CAN Hardware Simulator</h2>
+            <p>
+              Reverse-engineered vehicle Head Unit hardware and built a custom CAN simulator in Qt/C++. This simulator replaced physical development tools costing USD 5K–14K per developer seat at zero cost, enabling parallelized overnight execution of 1,000+ automotive test cases.
+            </p>
+            <ul class="item-tags" aria-label="Technologies used">
+              <li>C++</li>
+              <li>Qt Framework</li>
+              <li>CAN Bus</li>
+              <li>Hardware Simulation</li>
+              <li>Automotive Testing</li>
+            </ul>
+          </article>
+
+          <!-- PROJECT 5 -->
+          <article id="project-5" class="item-card">
+            <h2>S-Band Telemetry Waveform Product</h2>
+            <p>
+              Led the product design for an S-Band Telemetry waveform, developing the LDPC encoder/decoder on FPGA and creating the complete MAC/HAL embedded software stack. The product successfully secured recurring aerospace defense contracts. The LDPC implementation built directly on M.Sc. research in hardware channel coding — see <a href="#research-thesis">thesis below</a>.
+            </p>
+            <ul class="item-tags" aria-label="Technologies used">
+              <li>C</li>
+              <li>FPGA</li>
+              <li>LDPC</li>
+              <li>RTOS</li>
+              <li>S-Band Waveforms</li>
+            </ul>
+          </article>
+
+          <!-- RESEARCH -->
+          <article id="research-thesis" class="item-card item-card--research">
+            <div class="item-meta">M.Sc. Research &bull; Nanyang Technological University &bull; 2011</div>
+            <h2>Hardware Implementation of Optimum Channel Codes</h2>
+            <p>
+              Master of Science thesis (Signal Processing) — School of Electrical and Electronic Engineering, NTU Singapore. Investigated Low Density Parity Check (LDPC) codes: capacity-approaching block codes whose hardware decoding algorithm outperforms most existing channel codes. The research formed the academic foundation for subsequent FPGA-based LDPC work in production aerospace systems.
+            </p>
+            <ul class="item-tags" aria-label="Research areas">
+              <li>LDPC Codes</li>
+              <li>Channel Coding</li>
+              <li>FPGA</li>
+              <li>Signal Processing</li>
+              <li>Hardware Implementation</li>
+            </ul>
+            <div style="margin-top: 0.75rem;">
+              <a href="https://hdl.handle.net/10356/53479" target="_blank" rel="noopener noreferrer">View thesis (NTU DR) &rarr;</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" aria-labelledby="heading-contact">
+        <h2 id="heading-contact">Contact</h2>
+        <p>
+          I am based in Berlin, Germany and open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
+        </p>
+        <ul class="contact-links">
+          <li><a href="mailto:sunishb@gmail.com" id="email-link">sunishb@gmail.com</a></li>
+          <li><a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer" id="linkedin-link">LinkedIn</a></li>
+          <li><a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer" id="github-link">GitHub</a></li>
+          <li><a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer" id="atlasmind-link">Live Project (atlasmind.de)</a></li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>&copy; 2026 Sunish Bharathan. All rights reserved.</p>
+      <p>Built with plain HTML &amp; CSS.</p>
+    </footer>
+
+  </div>
+</body>
+</html>

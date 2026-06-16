@@ -1,0 +1,780 @@
+/* ==========================================================================
+   MINIMALIST PERSONAL WEBSITE STYLING
+   ========================================================================== */
+
+/* --- 1. CSS VARIABLES & THEMING --- */
+:root {
+  --bg-color: #ffffff;
+  --text-primary: #111827;     /* Dark gray/off-black for soft contrast */
+  --text-secondary: #4b5563;   /* Slate gray for descriptions/meta */
+  --accent-color: #3b82f6;     /* Clean, professional blue */
+  --accent-hover: #1d4ed8;     /* Slightly darker blue for hover states */
+  --border-color: #e5e7eb;     /* Light gray border line */
+  --card-bg: #f9fafb;          /* Very light gray background for code blocks/tags */
+  
+  --max-width: 720px;          /* Optimal reading width */
+  --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Type scale — 5 steps, used consistently across all elements */
+  --text-xs:   0.75rem;    /* tags, skill category labels           */
+  --text-sm:   0.875rem;   /* meta, footer, nav, btn, read-more     */
+  --text-base: 1rem;       /* body, skill list items                */
+  --text-lg:   1.125rem;   /* lead-text, hero value-prop            */
+  --text-xl:   1.5rem;     /* h2 section headings, hero subtitle    */
+}
+
+/* --- 2. GLOBAL RESET & BASE STYLES --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-stack);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- 3. TYPOGRAPHY --- */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover, a:focus {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* --- 4. LAYOUT CONTAINER --- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* --- Hero Section & Buttons (Option B) --- */
+.hero-section {
+  padding: 1.5rem 0 3rem 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 3rem;
+}
+
+.hero-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.hero-value-prop {
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 580px;
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: 6px;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-color);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--text-secondary);
+  border-color: var(--text-secondary);
+  color: var(--bg-color);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* --- 5. HEADER & NAVIGATION --- */
+.site-header {
+  margin-bottom: 1.5rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.site-title span {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+.main-nav a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  padding: 0.5rem 0.75rem;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--text-primary);
+  background-color: var(--card-bg);
+  text-decoration: none;
+}
+
+/* --- 6. SECTION-SPECIFIC STYLES --- */
+
+main section {
+  margin-bottom: 4.5rem;
+}
+
+/* Intro / About */
+.lead-text {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+/* Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skill-category h3 {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.4rem;
+}
+
+.skill-list {
+  list-style: none;
+}
+
+.skill-list li {
+  font-size: var(--text-base);
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Projects & Blog Lists */
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item-card {
+  padding: 0.75rem 0 1.25rem 1.25rem;
+  border-left: 2px solid var(--border-color);
+  transition: border-color 0.15s ease-in-out;
+}
+
+.item-card h2,
+.item-card h3 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.item-card p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.item-card:hover {
+  border-left-color: var(--accent-color);
+}
+
+.item-card--research {
+  border-left-color: var(--accent-color);
+  background-color: var(--card-bg);
+  padding: 1rem 1rem 1.25rem 1.25rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.item-meta {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  list-style: none;
+}
+
+.item-tags li {
+  font-size: var(--text-xs);
+  background-color: var(--card-bg);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.read-more {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.35rem 0;
+}
+
+.section-footer-link {
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+
+/* Contact */
+.contact-section p {
+  margin-bottom: 1.5rem;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.contact-links a {
+  font-weight: 500;
+}
+
+/* --- 7. ARTICLE PAGE --- */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.article-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.article-meta {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.article-tags li a {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+}
+
+.article-tags li a:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.article-body p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.article-body h2 {
+  margin-top: 3rem;
+}
+
+.article-body h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: none;
+}
+
+pre {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--card-bg);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: var(--text-sm);
+}
+
+.article-links-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: var(--text-sm);
+}
+
+.article-links-box p {
+  margin-bottom: 0.35rem;
+  line-height: 1.5;
+}
+
+.article-links-box p:last-child {
+  margin-bottom: 0;
+}
+
+.article-demo-img {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+}
+
+.article-demo-caption {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+}
+
+.article-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.article-footer p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* --- 8. FOOTER --- */
+.site-footer {
+  margin-top: 5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --- 8. UTILITY STYLES --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- 9. RESPONSIVE DESIGN (MOBILE-FIRST) --- */
+@media (max-width: 580px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .main-nav ul {
+    gap: 0.25rem;
+    margin-left: -0.75rem;
+  }
+  
+  .hero-section {
+    padding: 1rem 0 2rem 0;
+  }
+
+  .hero-title {
+    font-size: 1.875rem;
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-base);
+    margin-bottom: 1rem;
+  }
+
+  .hero-value-prop {
+    font-size: var(--text-base);
+    margin-bottom: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* --- 9.5. ARTICLE / BLOG POST DETAIL STYLES --- */
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.article-header {
+  margin-bottom: 2.5rem;
+}
+
+.article-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.article-tags li {
+  font-size: 0.75rem;
+  background-color: var(--card-bg);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.article-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+
+.article-body p {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.article-body h2 {
+  font-size: 1.625rem;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.article-body h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-body pre {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.article-body pre code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.article-body code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875rem;
+  background-color: var(--card-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.article-links-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin: 2rem 0;
+}
+
+.article-links-box p {
+  margin-bottom: 0.75rem;
+}
+
+.article-links-box p:last-child {
+  margin-bottom: 0;
+}
+
+.article-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
+
+.article-footer p {
+  margin-bottom: 0.5rem;
+}
+
+/* --- 10. PRINT-FRIENDLY STYLES --- */
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-size: 12pt;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 100%;
+  }
+  
+  .main-nav,
+  .read-more,
+  .section-footer-link,
+  .site-footer,
+  .hero-buttons,
+  .back-link {
+    display: none !important;
+  }
+  
+  h2 {
+    margin-top: 20pt;
+    border-bottom: 1px solid #000000;
+    page-break-after: avoid;
+  }
+  
+  p, .item-card {
+    page-break-inside: avoid;
+  }
+  
+  .item-card {
+    border-left: none !important;
+    padding-left: 0 !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  a {
+    color: #000000;
+    text-decoration: underline;
+  }
+  
+  /* Print URLs next to links for reference */
+  a[href^="http"]:after,
+  a[href^="mailto"]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555555;
+  }
+}
