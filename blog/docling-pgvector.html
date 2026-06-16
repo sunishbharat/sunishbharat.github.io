@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="How I built a production RAG pipeline using Docling and pgvector without LangChain — and what I learned about PDF parsing, table extraction, and vector search along the way.">
-  <title>Building a RAG Pipeline with Docling and pgvector — Without LangChain | Sunish Bharathan</title>
+  <meta name="description" content="How I built a production RAG pipeline using Docling and pgvector without LangChain, and what I learned about PDF parsing, table extraction, and vector search along the way.">
+  <title>Building a RAG Pipeline with Docling and pgvector: Without LangChain | Sunish Bharathan</title>
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sunishbharat.github.io/blog/docling-pgvector.html">
+  <meta property="og:title" content="Building a RAG Pipeline with Docling and pgvector: Without LangChain">
+  <meta property="og:description" content="How I built a production RAG pipeline using Docling and pgvector without LangChain: PDF parsing, table extraction, and vector search from scratch. Every line visible.">
+  <meta property="og:image" content="https://sunishbharat.github.io/assets/og-preview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="container">
@@ -16,16 +21,16 @@
     <!-- HEADER -->
     <header class="site-header">
       <div class="header-content">
-        <a href="index.html" class="site-title" aria-label="Sunish Bharathan Homepage">
+        <a href="../index.html" class="site-title" aria-label="Sunish Bharathan Homepage">
           Sunish Bharathan
           <span>Leads programs. Writes code. Delivers AI.</span>
         </a>
         <nav class="main-nav" aria-label="Primary Navigation">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="blog.html" class="active">Blog</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="./" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -35,20 +40,20 @@
     <main>
       <article aria-labelledby="article-title">
 
-        <a href="blog.html" class="back-link">&larr; All articles</a>
+        <a href="./" class="back-link">&larr; All articles</a>
 
         <!-- ARTICLE HEADER -->
         <header class="article-header">
-          <h1 id="article-title" class="article-title">Building a RAG Pipeline with Docling and pgvector &mdash; Without LangChain</h1>
+          <h1 id="article-title" class="article-title">Building a RAG Pipeline with Docling and pgvector: Without LangChain</h1>
           <div class="article-meta">
             <time datetime="2026-06-05">June 5, 2026</time> &bull; 10 min read
           </div>
           <ul class="article-tags">
-            <li><a href="#">#rag</a></li>
-            <li><a href="#">#ai</a></li>
-            <li><a href="#">#python</a></li>
-            <li><a href="#">#pgvector</a></li>
-            <li><a href="#">#docling</a></li>
+            <li><span>#rag</span></li>
+            <li><span>#ai</span></li>
+            <li><span>#python</span></li>
+            <li><span>#pgvector</span></li>
+            <li><span>#docling</span></li>
           </ul>
         </header>
 
@@ -56,7 +61,7 @@
         <div class="article-body">
 
           <p>
-            Every RAG tutorial I found started the same way: <code>pip install langchain</code>, followed by 15 lines of boilerplate that somehow parsed a PDF, embedded it, stored it, and retrieved it — all without explaining what any of it was actually doing. I kept staring at those tutorials thinking: I know the output, but I have no idea what's happening between input and search result.
+            Every RAG tutorial I found started the same way: <code>pip install langchain</code>, followed by 15 lines of boilerplate that somehow parsed a PDF, embedded it, stored it, and retrieved it, all without explaining what any of it was actually doing. I kept staring at those tutorials thinking: I know the output, but I have no idea what's happening between input and search result.
           </p>
 
           <p>
@@ -66,15 +71,15 @@
           <h2>Why Docling?</h2>
 
           <p>
-            I had a specific problem with most PDF parsers: tables. Feed a standard RAG pipeline a paper or a technical report, and any comparison table gets extracted as garbled flat text — column headers mixed with row values, all meaning lost. If the table happens to contain the exact answer to your query, you're not getting it back in any useful form.
+            I had a specific problem with most PDF parsers: tables. Feed a standard RAG pipeline a paper or a technical report, and any comparison table gets extracted as garbled flat text, with column headers mixed with row values, all meaning lost. If the table happens to contain the exact answer to your query, you're not getting it back in any useful form.
           </p>
 
           <p>
-            Docling does something different. It identifies tables in a PDF and exports them as Markdown — structured, readable, and searchable. That means a complexity comparison table from a research paper gets stored as a proper Markdown table in your vector database, not as a string of tokens that a model has to reconstruct from scratch.
+            Docling does something different. It identifies tables in a PDF and exports them as Markdown: structured, readable, and searchable. That means a complexity comparison table from a research paper gets stored as a proper Markdown table in your vector database, not as a string of tokens that a model has to reconstruct from scratch.
           </p>
 
           <p>
-            This turned out to matter a lot in practice. When I tested the pipeline against the <em>Attention Is All You Need</em> paper, the top retrieved chunk for a table-specific query was the actual Markdown table — distance score 0.55, correctly ranked above the surrounding prose. Here's what that looks like from a real test run:
+            This turned out to matter a lot in practice. When I tested the pipeline against the <em>Attention Is All You Need</em> paper, the top retrieved chunk for a table-specific query was the actual Markdown table, with a distance score of 0.55, correctly ranked above the surrounding prose. Here's what that looks like from a real test run:
           </p>
 
           <pre><code>query = "Maximum path lengths, per-layer complexity and minimum \
@@ -119,11 +124,11 @@ SentenceTransformer            ← BAAI/bge-base-en-v1.5 (768-dim)
 PostgreSQL + pgvector          ← similarity search (L2 distance)</code></pre>
 
           <p>
-            The embedding model is <code>BAAI/bge-base-en-v1.5</code> — a solid general-purpose model at 768 dimensions. It's not the flashiest choice but it's well understood, well tested, and you can swap it out for any HuggingFace SentenceTransformer by changing a single config parameter. I specifically did not want a hard dependency on one model. The config is validated against HuggingFace Hub before downloading, so you get a clear error if you mistype a model name rather than a confusing runtime failure.
+            The embedding model is <code>BAAI/bge-base-en-v1.5</code>, a solid general-purpose model at 768 dimensions. It's not the flashiest choice but it's well understood, well tested, and you can swap it out for any HuggingFace SentenceTransformer by changing a single config parameter. I specifically did not want a hard dependency on one model. The config is validated against HuggingFace Hub before downloading, so you get a clear error if you mistype a model name rather than a confusing runtime failure.
           </p>
 
           <p>
-            The vector store is pgvector on PostgreSQL 17. I chose pgvector over a dedicated vector database because I already had PostgreSQL in my infrastructure for other things, and pgvector's L2 distance search is more than adequate for the scale I needed. Adding another database to your stack just for vector search is a trade-off that only makes sense at large scale — for a project like this, it would have been unnecessary complexity.
+            The vector store is pgvector on PostgreSQL 17. I chose pgvector over a dedicated vector database because I already had PostgreSQL in my infrastructure for other things, and pgvector's L2 distance search is more than adequate for the scale I needed. Adding another database to your stack just for vector search is a trade-off that only makes sense at large scale: for a project like this, it would have been unnecessary complexity.
           </p>
 
           <h2>What it looks like in code</h2>
@@ -175,7 +180,7 @@ with PGVectorClient(pg_config) as client:
           <h2>Getting it running</h2>
 
           <p>
-            I wanted this to be usable in three different ways — from a quick pull-and-run all the way to a full dev setup with tests. So the repo has three options. If you just want to try it, the fastest path is pulling the pre-built Docker image:
+            I wanted this to be usable in three different ways: from a quick pull-and-run all the way to a full dev setup with tests. So the repo has three options. If you just want to try it, the fastest path is pulling the pre-built Docker image:
           </p>
 
           <pre><code>docker pull ghcr.io/sunishbharat/docling-pgvector:cpu-dev
@@ -204,7 +209,7 @@ docker run --rm -it \
   bash</code></pre>
 
           <p>
-            If you use VS Code, the Dev Container option is even simpler — open the repo, click "Reopen in Container", and everything configures itself: PostgreSQL, the vector extension, the test PDF. No manual setup at all. For anyone who just wants to run it locally with Python 3.12+ and <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>, there's Option C in the README.
+            If you use VS Code, the Dev Container option is even simpler: open the repo, click "Reopen in Container", and everything configures itself: PostgreSQL, the vector extension, the test PDF. No manual setup at all. For anyone who just wants to run it locally with Python 3.12+ and <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener noreferrer">uv</a>, there's Option C in the README.
           </p>
 
           <div class="article-links-box">
@@ -215,11 +220,11 @@ docker run --rm -it \
           <h2>What I actually learned</h2>
 
           <p>
-            <strong>Table extraction is a real problem, not a nice-to-have.</strong> I underestimated this going in. A significant fraction of the useful information in technical documents lives in tables — comparison grids, benchmark results, configuration options. If your RAG pipeline can't retrieve that content in a structured form, you're building on a gap. Docling's HybridChunker handling of <code>TableItem</code> objects is the feature that made it the right tool here.
+            <strong>Table extraction is a real problem, not a nice-to-have.</strong> I underestimated this going in. A significant fraction of the useful information in technical documents lives in tables: comparison grids, benchmark results, configuration options. If your RAG pipeline can't retrieve that content in a structured form, you're building on a gap. Docling's HybridChunker handling of <code>TableItem</code> objects is the feature that made it the right tool here.
           </p>
 
           <p>
-            <strong>Not using a framework forces clarity.</strong> When I wrote the pgvector client from scratch, I had to make explicit decisions: connection pooling, cursor lifecycle, transaction boundaries, how to handle the vector dimension mismatch if someone changes models mid-session. LangChain handles some of this transparently, which is convenient right until something goes wrong and you have no idea which abstraction layer is misbehaving. I now have a much clearer mental model of what a RAG pipeline is actually doing, and that has made me a better architect of the systems that use them — including AtlasMind.
+            <strong>Not using a framework forces clarity.</strong> When I wrote the pgvector client from scratch, I had to make explicit decisions: connection pooling, cursor lifecycle, transaction boundaries, how to handle the vector dimension mismatch if someone changes models mid-session. LangChain handles some of this transparently, which is convenient right until something goes wrong and you have no idea which abstraction layer is misbehaving. I now have a much clearer mental model of what a RAG pipeline is actually doing, and that has made me a better architect of the systems that use them, including AtlasMind.
           </p>
 
           <p>
@@ -231,7 +236,7 @@ docker run --rm -it \
           </p>
 
           <p>
-            The next thing I want to add is support for non-PDF formats — CSV and web pages are both obvious additions. The Docling team is actively developing the library and new converters are arriving regularly. For now, the PDF path is solid, tested, and documented. If you're building a RAG pipeline and want to understand what you're actually building, this is a cleaner starting point than most tutorials.
+            The next thing I want to add is support for non-PDF formats: CSV and web pages are both obvious additions. The Docling team is actively developing the library and new converters are arriving regularly. For now, the PDF path is solid, tested, and documented. If you're building a RAG pipeline and want to understand what you're actually building, this is a cleaner starting point than most tutorials.
           </p>
 
           <!-- ARTICLE FOOTER -->
@@ -241,29 +246,26 @@ docker run --rm -it \
 
         </div>
       </article>
-
-      <!-- CONTACT SECTION -->
-      <section id="contact" aria-labelledby="heading-contact">
-        <h2 id="heading-contact">Contact</h2>
-        <p>
-          I am based in Berlin, Germany and open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
-        </p>
-        <ul class="contact-links">
-          <li><a href="mailto:sunishb@gmail.com">sunishb@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">atlasmind.de</a></li>
-        </ul>
-      </section>
-
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
       <p>&copy; 2026 Sunish Bharathan. All rights reserved.</p>
-      <p>Built with plain HTML &amp; CSS.</p>
+      <nav class="footer-links" aria-label="Social links">
+        <a href="#" id="footer-email-link">Email</a>
+        <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">atlasmind.de</a>
+      </nav>
     </footer>
 
   </div>
+  <script>
+    (function () {
+      var u = 'sunishb', d = 'gmail' + '.' + 'com';
+      var el = document.getElementById('footer-email-link');
+      if (el) { el.href = 'mailto:' + u + '@' + d; }
+    })();
+  </script>
 </body>
 </html>

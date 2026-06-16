@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Personal portfolio and professional profile of Sunish Bharathan - Engineering Delivery & AI Systems.">
   <title>Sunish Bharathan | Engineering Delivery &amp; AI Systems</title>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sunishbharat.github.io/">
+  <meta property="og:title" content="Sunish Bharathan | Engineering Delivery &amp; AI Systems">
+  <meta property="og:description" content="20+ years delivering complex software programs: from FPGA/RTOS embedded systems to production LLM deployments.">
+  <meta property="og:image" content="https://sunishbharat.github.io/assets/og-preview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +25,7 @@
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="blog/">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -34,7 +39,7 @@
       <section class="hero-section" aria-labelledby="hero-heading">
 <h1 id="hero-heading" class="hero-title">Sunish Bharathan</h1>
         <p class="hero-subtitle">Leads programs. Writes code. Delivers AI.</p>
-        <p class="hero-value-prop">20+ years delivering complex software programs — from FPGA/RTOS embedded systems to production LLM deployments.</p>
+        <p class="hero-value-prop">20+ years delivering complex software programs: from FPGA/RTOS embedded systems to production LLM deployments.</p>
         <div class="hero-buttons">
           <a href="projects.html" class="btn btn-primary">View Projects &rarr;</a>
           <a href="#contact" class="btn btn-secondary">Get in Touch</a>
@@ -95,7 +100,7 @@
         <div class="list-container">
           
           <article class="item-card">
-            <h3><a href="projects.html#project-1">AtlasMind — Production AI Assistant</a></h3>
+            <h3><a href="blog/atlasmind.html">AtlasMind: Production AI Assistant</a></h3>
             <p>A live natural language to JQL dashboard and query tool using RAG and pgvector. Features runtime LLM routing across 5 backends, self-healing query retries, and GPU inference. Deployed solo on Oracle Cloud A1.</p>
             <ul class="item-tags" aria-label="Technologies used">
               <li>Python</li>
@@ -108,7 +113,7 @@
           </article>
 
           <article class="item-card">
-            <h3><a href="projects.html#project-2">GPT-2 Transformer From the Ground Up</a></h3>
+            <h3><a href="blog/gpt2.html">GPT-2 Transformer From the Ground Up</a></h3>
             <p>Built a functional GPT-2 transformer architecture from scratch in Python to understand tokenization, multi-head attention mechanisms, feedforward layers, training loops, and language model inference.</p>
             <ul class="item-tags" aria-label="Technologies used">
               <li>Python</li>
@@ -133,23 +138,23 @@
             <div class="item-meta">
               <time datetime="2026-05-22">May 22, 2026</time> &bull; 8 min read
             </div>
-            <h3><a href="blog-atlasmind.html">Why I Built My Own AI Project Management Assistant &mdash; and What I Learned</a></h3>
-            <p>The story of building AtlasMind — a plain-English to JQL query engine with a self-correcting agentic loop, RAG pipeline, and multi-backend LLM routing. Deployed solo on Oracle Cloud.</p>
-            <a href="blog-atlasmind.html" class="read-more" aria-label="Read the AtlasMind article">Read article &rarr;</a>
+            <h3><a href="blog/atlasmind.html">Why I Built My Own AI Project Management Assistant, and What I Learned</a></h3>
+            <p>The story of building AtlasMind, a plain-English to JQL query engine with a self-correcting agentic loop, RAG pipeline, and multi-backend LLM routing. Deployed solo on Oracle Cloud.</p>
+            <a href="blog/atlasmind.html" class="read-more" aria-label="Read the AtlasMind article">Read article &rarr;</a>
           </article>
 
           <article class="item-card">
             <div class="item-meta">
               <time datetime="2026-04-15">April 15, 2026</time> &bull; 10 min read
             </div>
-            <h3><a href="blog.html#post-2">From 3 Weeks to 30 Minutes: Automating ASPICE Compliance</a></h3>
+            <h3>From 3 Weeks to 30 Minutes: Automating ASPICE Compliance</h3>
             <p>How we automated the ASPICE artifact pipeline for a VW diagnostics project using Jenkins, reducing compliance cycles from three manual weeks to an automated 30-minute verification run per release.</p>
-            <a href="blog.html#post-2" class="read-more" aria-label="Read more about Automating ASPICE Compliance">Read article &rarr;</a>
+            <span class="item-meta">Article coming soon</span>
           </article>
 
         </div>
         <div class="section-footer-link">
-          <a href="blog.html">View all articles &rarr;</a>
+          <a href="blog/">View all articles &rarr;</a>
         </div>
       </section>
 
@@ -160,7 +165,7 @@
           I am open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
         </p>
         <ul class="contact-links">
-          <li><a href="mailto:sunishb@gmail.com" id="email-link">sunishb@gmail.com</a></li>
+          <li><a href="#" id="email-link">Email</a></li>
           <li><a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer" id="linkedin-link">LinkedIn</a></li>
           <li><a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer" id="github-link">GitHub</a></li>
           <li><a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer" id="atlasmind-link">Live Project (atlasmind.de)</a></li>
@@ -172,9 +177,25 @@
     <!-- FOOTER -->
     <footer class="site-footer">
       <p>&copy; 2026 Sunish Bharathan. All rights reserved.</p>
-      <p>Built with plain HTML &amp; CSS.</p>
+      <nav class="footer-links" aria-label="Social links">
+        <a href="#" id="footer-email-link">Email</a>
+        <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">atlasmind.de</a>
+      </nav>
     </footer>
 
   </div>
+  <script>
+    (function () {
+      var u = 'sunishb', d = 'gmail' + '.' + 'com';
+      var href = 'mailto:' + u + '@' + d;
+      var label = u + '@' + d;
+      var el = document.getElementById('email-link');
+      if (el) { el.href = href; el.textContent = label; }
+      var fl = document.getElementById('footer-email-link');
+      if (fl) { fl.href = href; }
+    })();
+  </script>
 </body>
 </html>

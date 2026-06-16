@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Why I built AtlasMind — an AI project management assistant that turns plain English into JQL queries and charts. What I learned building it solo.">
+  <meta name="description" content="Why I built AtlasMind, an AI project management assistant that turns plain English into JQL queries and charts. What I learned building it solo.">
   <title>Why I Built My Own AI Project Management Assistant | Sunish Bharathan</title>
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sunishbharat.github.io/blog/atlasmind.html">
+  <meta property="og:title" content="Why I Built My Own AI Project Management Assistant, and What I Learned">
+  <meta property="og:description" content="The story of building AtlasMind, a plain-English to JQL query engine with a self-correcting agentic loop, RAG pipeline, and multi-backend LLM routing. Deployed solo on Oracle Cloud.">
+  <meta property="og:image" content="https://i.imgur.com/8hngc9b.gif">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="container">
@@ -16,16 +21,16 @@
     <!-- HEADER -->
     <header class="site-header">
       <div class="header-content">
-        <a href="index.html" class="site-title" aria-label="Sunish Bharathan Homepage">
+        <a href="../index.html" class="site-title" aria-label="Sunish Bharathan Homepage">
           Sunish Bharathan
           <span>Leads programs. Writes code. Delivers AI.</span>
         </a>
         <nav class="main-nav" aria-label="Primary Navigation">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="blog.html" class="active">Blog</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+            <li><a href="./" class="active">Blog</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -35,19 +40,19 @@
     <main>
       <article aria-labelledby="article-title">
 
-        <a href="blog.html" class="back-link">&larr; All articles</a>
+        <a href="./" class="back-link">&larr; All articles</a>
 
         <!-- ARTICLE HEADER -->
         <header class="article-header">
-          <h1 id="article-title" class="article-title">Why I Built My Own AI Project Management Assistant &mdash; and What I Learned</h1>
+          <h1 id="article-title" class="article-title">Why I Built My Own AI Project Management Assistant, and What I Learned</h1>
           <div class="article-meta">
             <time datetime="2026-05-22">May 22, 2026</time> &bull; 8 min read &bull; Originally published on <a href="https://dev.to/sunishb/why-i-built-my-own-ai-project-management-assistant-and-what-i-learned-5fc6" target="_blank" rel="noopener noreferrer">DEV Community</a>
           </div>
           <ul class="article-tags">
-            <li><a href="#">#ai</a></li>
-            <li><a href="#">#management</a></li>
-            <li><a href="#">#productivity</a></li>
-            <li><a href="#">#llm</a></li>
+            <li><span>#ai</span></li>
+            <li><span>#management</span></li>
+            <li><span>#productivity</span></li>
+            <li><span>#llm</span></li>
           </ul>
         </header>
 
@@ -55,15 +60,15 @@
         <div class="article-body">
 
           <p>
-            After decades of managing software programs across different industries, I still found myself spending hours each week writing JQL to get my reporting ready. Every project management tool I have worked with is excellent at storing data and painful at visualizing it. Jira is the best of them — it is still painful. The more you start exploring, the more knowledge and skills one needs to adapt to get a valuable result out of it. And even when you got the data, you still had to turn it into something a stakeholder could read: the right chart, in the right format, without a tutorial.
+            After decades of managing software programs across different industries, I still found myself spending hours each week writing JQL to get my reporting ready. Every project management tool I have worked with is excellent at storing data and painful at visualizing it. Jira is the best of them: it is still painful. The more you start exploring, the more knowledge and skills one needs to adapt to get a valuable result out of it. And even when you got the data, you still had to turn it into something a stakeholder could read: the right chart, in the right format, without a tutorial.
           </p>
 
           <p>
-            Different reports for different audiences with a variety of charts — everyone needed a different view of the same data. Should I export to Excel and create a pivot table, or use dashboard reports by manually creating each type of chart, or use a third-party vendor tool? The choices are many but integration effort and future reliability are always a question. And there is the added burden of knowing how to query using JQL, SQL, MDX, or whatever the tool demands.
+            Different reports for different audiences with a variety of charts: everyone needed a different view of the same data. Should I export to Excel and create a pivot table, or use dashboard reports by manually creating each type of chart, or use a third-party vendor tool? The choices are many but integration effort and future reliability are always a question. And there is the added burden of knowing how to query using JQL, SQL, MDX, or whatever the tool demands.
           </p>
 
           <p>
-            To overcome all of these problems, I turned to AI — offloading the heavy lifting and focusing on letting it generate the right charts and queries. This is what <strong>AtlasMind</strong> does: give it a question in plain English about your project and you get charts rendered with tables that can be filtered and used for reports with a single click.
+            To overcome all of these problems, I turned to AI, offloading the heavy lifting and focusing on letting it generate the right charts and queries. This is what <strong>AtlasMind</strong> does: give it a question in plain English about your project and you get charts rendered with tables that can be filtered and used for reports with a single click.
           </p>
 
           <p>
@@ -81,7 +86,7 @@ Answer: Open bugs in Kafka project ordered by priority.
 
           <img
             src="https://i.imgur.com/8hngc9b.gif"
-            alt="AtlasMind demo — type a question in plain English, get JQL, a chart and an answer in seconds"
+            alt="AtlasMind demo: type a question in plain English, get JQL, a chart and an answer in seconds"
             class="article-demo-img"
           >
           <p class="article-demo-caption">Type a question in plain English. Get JQL, a chart, and an answer in seconds.</p>
@@ -106,12 +111,12 @@ Answer: Open bugs in Kafka project ordered by priority.
 
           <h3>LLM Orchestrator</h3>
           <p>
-            This layer acts as a backend switch — routing to whichever active backend the system selects: Groq, Ollama, Claude, and others. Each backend is a separate async client module, making them independently swappable with no core changes.
+            This layer acts as a backend switch, routing to whichever active backend the system selects: Groq, Ollama, Claude, and others. Each backend is a separate async client module, making them independently swappable with no core changes.
           </p>
 
           <h3>Self-Correcting JQL Loop</h3>
           <p>
-            Before the LLM-generated JQL reaches the Jira API, it goes through a 7-pass sanitizer. These seven passes handle the most common LLM failure modes without any LLM call, making the system more robust. After sanitization, the JQL is executed against the Jira REST API — and this is where the agentic feedback loop begins. The loop runs up to <em>n</em> retries. When Jira identifies a specific invalid field by name, the prompt tells the LLM to remove exactly that field condition — not to guess or hallucinate replacements. This surgical assertion makes the LLM generate deterministic, valid JQL.
+            Before the LLM-generated JQL reaches the Jira API, it goes through a 7-pass sanitizer. These seven passes handle the most common LLM failure modes without any LLM call, making the system more robust. After sanitization, the JQL is executed against the Jira REST API, and this is where the agentic feedback loop begins. The loop runs up to <em>n</em> retries. When Jira identifies a specific invalid field by name, the prompt tells the LLM to remove exactly that field condition, not to guess or hallucinate replacements. This surgical assertion makes the LLM generate deterministic, valid JQL.
           </p>
 
           <h3>Multi-Backend Architecture</h3>
@@ -121,7 +126,7 @@ Answer: Open bugs in Kafka project ordered by priority.
 
           <h3>Deployment</h3>
           <p>
-            AtlasMind runs on an Oracle Cloud Infrastructure A1 instance with PostgreSQL + pgvector, Groq as the default backend, Ollama as the fallback, and the Svelte frontend — all on one machine. For heavier inference there is also support for a local GPU system running vLLM with a quantized 7B Qwen2.5-Coder model over HTTP. When the GPU system is offline, AtlasMind falls back to Ollama automatically with no configuration change or restart required.
+            AtlasMind runs on an Oracle Cloud Infrastructure A1 instance with PostgreSQL + pgvector, Groq as the default backend, Ollama as the fallback, and the Svelte frontend, all on one machine. For heavier inference there is also support for a local GPU system running vLLM with a quantized 7B Qwen2.5-Coder model over HTTP. When the GPU system is offline, AtlasMind falls back to Ollama automatically with no configuration change or restart required.
           </p>
 
           <h2>What I Learned</h2>
@@ -135,7 +140,7 @@ Answer: Open bugs in Kafka project ordered by priority.
           </p>
 
           <p>
-            <strong>Building from scratch is worth it.</strong> I deliberately avoided Langchain and Langgraph and built the RAG pipeline and agentic loop raw. Understanding what is happening under the hood — every embedding lookup, every retry cycle, every routing decision — made me a better architect of these systems. I am equally curious to see how the results change when built on standard libraries.
+            <strong>Building from scratch is worth it.</strong> I deliberately avoided Langchain and Langgraph and built the RAG pipeline and agentic loop raw. Understanding what is happening under the hood: every embedding lookup, every retry cycle, every routing decision, made me a better architect of these systems. I am equally curious to see how the results change when built on standard libraries.
           </p>
 
           <p>
@@ -151,29 +156,26 @@ Answer: Open bugs in Kafka project ordered by priority.
 
         </div>
       </article>
-
-      <!-- CONTACT SECTION -->
-      <section id="contact" aria-labelledby="heading-contact">
-        <h2 id="heading-contact">Contact</h2>
-        <p>
-          I am based in Berlin, Germany and open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
-        </p>
-        <ul class="contact-links">
-          <li><a href="mailto:sunishb@gmail.com">sunishb@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">atlasmind.de</a></li>
-        </ul>
-      </section>
-
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
       <p>&copy; 2026 Sunish Bharathan. All rights reserved.</p>
-      <p>Built with plain HTML &amp; CSS.</p>
+      <nav class="footer-links" aria-label="Social links">
+        <a href="#" id="footer-email-link">Email</a>
+        <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">atlasmind.de</a>
+      </nav>
     </footer>
 
   </div>
+  <script>
+    (function () {
+      var u = 'sunishb', d = 'gmail' + '.' + 'com';
+      var el = document.getElementById('footer-email-link');
+      if (el) { el.href = 'mailto:' + u + '@' + d; }
+    })();
+  </script>
 </body>
 </html>

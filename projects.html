@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Technical projects and systems delivery by Sunish Bharathan.">
   <title>Projects &amp; Delivery | Sunish Bharathan</title>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sunishbharat.github.io/projects.html">
+  <meta property="og:title" content="Projects &amp; Delivery | Sunish Bharathan">
+  <meta property="og:description" content="Hand-built AI applications and large-scale systems delivery: AtlasMind, GPT-2 from scratch, ASPICE automation, CAN simulator, S-Band telemetry.">
+  <meta property="og:image" content="https://sunishbharat.github.io/assets/og-preview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,8 +29,8 @@
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="blog/">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -43,7 +48,7 @@
           
           <!-- PROJECT 1 -->
           <article id="project-1" class="item-card">
-            <h2>AtlasMind — Production AI Assistant</h2>
+            <h2>AtlasMind: Production AI Assistant</h2>
             <p>
               A live natural language to JQL (Jira Query Language) assistant using RAG (Retrieval-Augmented Generation) and pgvector. It features a two-stage router that bypasses the JQL parser for general inquiries. It contains a self-healing loop: when a query fails validation, the error is fed back to the LLM for automatic query correction (up to 4 retry cycles). Operates with 5 runtime-switchable LLM backends.
             </p>
@@ -57,8 +62,8 @@
               <li>Tailscale</li>
               <li>Oracle Cloud (OCI)</li>
             </ul>
-            <div style="margin-top: 0.75rem;">
-              <a href="https://github.com/sunishbharat/atlasMind-Lite" target="_blank" rel="noopener noreferrer" style="margin-right: 1rem;">View Code (GitHub)</a>
+            <div class="card-links">
+              <a href="https://github.com/sunishbharat/atlasMind-Lite" target="_blank" rel="noopener noreferrer">View Code (GitHub)</a>
               <a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">Live Site (atlasmind.de)</a>
             </div>
           </article>
@@ -76,8 +81,9 @@
               <li>Transformers</li>
               <li>Deep Learning</li>
             </ul>
-            <div style="margin-top: 0.75rem;">
-              <a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">View GitHub Profile</a>
+            <div class="card-links">
+              <a href="https://github.com/sunishbharat/llm-from-the-ground-up" target="_blank" rel="noopener noreferrer">View Code (GitHub)</a>
+              <a href="blog/gpt2.html">Read Article</a>
             </div>
           </article>
 
@@ -115,7 +121,7 @@
           <article id="project-5" class="item-card">
             <h2>S-Band Telemetry Waveform Product</h2>
             <p>
-              Led the product design for an S-Band Telemetry waveform, developing the LDPC encoder/decoder on FPGA and creating the complete MAC/HAL embedded software stack. The product successfully secured recurring aerospace defense contracts. The LDPC implementation built directly on M.Sc. research in hardware channel coding — see <a href="#research-thesis">thesis below</a>.
+              Led the product design for an S-Band Telemetry waveform, developing the LDPC encoder/decoder on FPGA and creating the complete MAC/HAL embedded software stack. The product successfully secured recurring aerospace defense contracts. The LDPC implementation built directly on M.Sc. research in hardware channel coding, see <a href="#research-thesis">thesis below</a>.
             </p>
             <ul class="item-tags" aria-label="Technologies used">
               <li>C</li>
@@ -131,7 +137,7 @@
             <div class="item-meta">M.Sc. Research &bull; Nanyang Technological University &bull; 2011</div>
             <h2>Hardware Implementation of Optimum Channel Codes</h2>
             <p>
-              Master of Science thesis (Signal Processing) — School of Electrical and Electronic Engineering, NTU Singapore. Investigated Low Density Parity Check (LDPC) codes: capacity-approaching block codes whose hardware decoding algorithm outperforms most existing channel codes. The research formed the academic foundation for subsequent FPGA-based LDPC work in production aerospace systems.
+              Master of Science thesis (Signal Processing): School of Electrical and Electronic Engineering, NTU Singapore. Investigated Low Density Parity Check (LDPC) codes: capacity-approaching block codes whose hardware decoding algorithm outperforms most existing channel codes. The research formed the academic foundation for subsequent FPGA-based LDPC work in production aerospace systems.
             </p>
             <ul class="item-tags" aria-label="Research areas">
               <li>LDPC Codes</li>
@@ -140,36 +146,31 @@
               <li>Signal Processing</li>
               <li>Hardware Implementation</li>
             </ul>
-            <div style="margin-top: 0.75rem;">
+            <div class="card-links">
               <a href="https://hdl.handle.net/10356/53479" target="_blank" rel="noopener noreferrer">View thesis (NTU DR) &rarr;</a>
             </div>
           </article>
 
         </div>
       </section>
-
-      <!-- CONTACT SECTION -->
-      <section id="contact" aria-labelledby="heading-contact">
-        <h2 id="heading-contact">Contact</h2>
-        <p>
-          I am based in Berlin, Germany and open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
-        </p>
-        <ul class="contact-links">
-          <li><a href="mailto:sunishb@gmail.com" id="email-link">sunishb@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer" id="linkedin-link">LinkedIn</a></li>
-          <li><a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer" id="github-link">GitHub</a></li>
-          <li><a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer" id="atlasmind-link">Live Project (atlasmind.de)</a></li>
-        </ul>
-      </section>
-
     </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
       <p>&copy; 2026 Sunish Bharathan. All rights reserved.</p>
-      <p>Built with plain HTML &amp; CSS.</p>
+      <nav class="footer-links" aria-label="Social links">
+        <a href="#" id="footer-email-link">Email</a>
+        <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/sunishbharat" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://atlasmind.de" target="_blank" rel="noopener noreferrer">atlasmind.de</a>
+      </nav>
     </footer>
 
   </div>
-</body>
-</html>
+  <script>
+    (function () {
+      var u = 'sunishb', d = 'gmail' + '.' + 'com';
+      var el = document.getElementById('footer-email-link');
+      if (el) { el.href = 'mailto:' + u + '@' + d; }
+    })();
+  </script>
