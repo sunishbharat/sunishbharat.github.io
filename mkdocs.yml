@@ -3,8 +3,7 @@ site_description: Technical Program Manager - Engineering Delivery and AI System
 site_url: https://sunishbharat.github.io
 
 nav:
-  - Home:
-    - About: index.md
+  - Home: index.md
   - Projects:
     - Overview: portfolio/index.md
     - AtlasMind AI Assistant: portfolio/projects/atlasmind.md
@@ -12,8 +11,7 @@ nav:
     - ASPICE Pipeline: portfolio/projects/aspice-pipeline.md
     - CAN Simulator: portfolio/projects/can-simulator.md
     - S-Band Telemetry: portfolio/projects/sband-telemetry.md
-  - Blog:
-    - blog/index.md
+  - Blog: blog/index.md
 
 theme:
   name: material

@@ -27,9 +27,11 @@ hide:
 
 # Sunish Bharathan
 
+<span class="availability"><span class="availability-dot"></span>Open to AI delivery &amp; engineering leadership roles &middot; Europe</span>
+
 ### Leads programs. Writes code. Delivers AI.
 
-20+ years delivering complex software programs: from FPGA/RTOS embedded systems to production LLM deployments.
+I bridge engineering execution and business delivery &mdash; taking complex, multi-team software from regulated embedded systems all the way to production LLM deployments.
 
 [View Projects :material-arrow-right:](portfolio/index.md){ .md-button .md-button--primary }
 [Get in Touch](#contact){ .md-button }
@@ -38,10 +40,28 @@ hide:
 
 <div class="profile-image-grid" markdown>
 
-![Sunish Bharathan](https://avatars.githubusercontent.com/sunishbharat){ .profile-image }
+<!-- Hero visual: live AtlasMind product demo. Swap to a headshot any time by changing the src below. -->
+<img src="assets/Atlasmind_tutorial-1.gif" alt="AtlasMind live demo" class="profile-image" onerror="this.onerror=null;this.src='https://avatars.githubusercontent.com/sunishbharat'">
+
+[atlasmind.de :material-arrow-top-right:](https://atlasmind.de){ .demo-caption target="_blank" rel="noopener" }
 
 </div>
 
+</div>
+
+<div class="stat-strip">
+  <div class="stat">
+    <span class="stat-num">20+ yrs</span>
+    <span class="stat-label">Delivering complex, multi-team software programs</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">ASIL-B &middot; ASPICE L2</span>
+    <span class="stat-label">Shipping inside highly regulated environments</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">AtlasMind LLM backends</span>
+    <span class="stat-label">Runtime-switchable &mdash; Ollama, vLLM, Groq, AWS Bedrock, OpenAI-compatible</span>
+  </div>
 </div>
 
 ## About
@@ -51,6 +71,8 @@ I deliver complex, multi-team software programs in highly regulated environments
 I specialize in cross-team integration, task-level dependency tracking, and setting up Agile governance structures from scratch. I maintain a hands-on focus in embedded systems and modern generative AI architectures.
 
 ## Skills
+
+A rare combination: **safety-critical program delivery** and hands-on **production GenAI**.
 
 <div class="grid cards" markdown>
 
@@ -144,7 +166,7 @@ I specialize in cross-team integration, task-level dependency tracking, and sett
 
 ## Contact { #contact }
 
-I am open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
+I am open to discussing technical program management, engineering leadership, or AI delivery roles across Europe. **Available for contract or full-time.**
 
 [sunishb@gmail.com](mailto:sunishb@gmail.com){ .md-button .md-button--primary }
 [LinkedIn :fontawesome-brands-linkedin:](https://linkedin.com/in/sunishbharathan){ .md-button target="_blank" }
