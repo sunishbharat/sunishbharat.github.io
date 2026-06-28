@@ -1,5 +1,52 @@
-# Exclude all markdown files
-*.md
+# Dotfiles - ignore all except whitelisted
+.*
+!.gitignore
+!.github/
 
-# Keep README
-!README.md
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+.installed.cfg
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+
+# Logs and test coverage
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Database
+*.db
+*.rdb
+
+# Editor and workspace
+*.code-workspace
+
+# MkDocs build output
+site/
+
+# Virtual environment
+.venv/
+
+# Models and data
+/models/
+# /data/

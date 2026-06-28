@@ -1,0 +1,100 @@
+site_name: Sunish Bharathan
+site_description: Technical Program Manager - Engineering Delivery and AI Systems
+site_url: https://sunishbharat.github.io
+
+nav:
+  - Home:
+    - About: index.md
+  - Projects:
+    - Overview: portfolio/index.md
+    - AtlasMind AI Assistant: portfolio/projects/atlasmind.md
+    - GPT-2 From Scratch: portfolio/projects/gpt2.md
+    - ASPICE Pipeline: portfolio/projects/aspice-pipeline.md
+    - CAN Simulator: portfolio/projects/can-simulator.md
+    - S-Band Telemetry: portfolio/projects/sband-telemetry.md
+  - Blog:
+    - blog/index.md
+
+theme:
+  name: material
+  features:
+    - search.suggest
+    - toc.integrate
+    - navigation.tabs
+    - navigation.expand
+    - navigation.sections
+    - navigation.instant
+    - navigation.instant.prefetch
+    - content.tooltips
+    - content.tabs.link
+    - content.code.copy
+    - navigation.footer
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline 
+        name: Switch to dark mode
+      primary: custom
+      accent: custom  
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode    
+      primary: custom
+      accent: custom
+  font:
+    text: Inter
+    code: Roboto Mono
+  icon:
+    logo: material/slash-forward-box
+  favicon: assets/favicon.png
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sunishbharat
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/sunishbharathan
+  analytics:
+    # provider: google
+    # property: G-W9Y130NXVZ
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/hero.css
+plugins:
+  - search
+  - social:
+      cards_layout_options:
+        background_color: "#111827"
+  - blog:
+      blog_dir: blog
+      authors_file: "{blog}/.authors.yml"
+      categories: true
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - def_list
+  - pymdownx.keys
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js
+
+copyright: |
+  &copy; 2025 <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener">Sunish Bharathan</a>. All rights reserved.
