@@ -27,11 +27,9 @@ hide:
 
 # Sunish Bharathan
 
-<span class="availability"><span class="availability-dot"></span>Open to AI delivery &amp; engineering leadership roles &middot; Europe</span>
-
 ### Leads programs. Writes code. Delivers AI.
 
-I bridge engineering execution and business delivery &mdash; taking complex, multi-team software from regulated embedded systems all the way to production LLM deployments.
+I bridge engineering execution and business delivery, taking complex, multi-team software from regulated embedded systems all the way to production LLM deployments.
 
 [View Projects :material-arrow-right:](portfolio/index.md){ .md-button .md-button--primary }
 [Get in Touch](#contact){ .md-button }
@@ -51,16 +49,16 @@ I bridge engineering execution and business delivery &mdash; taking complex, mul
 
 <div class="stat-strip">
   <div class="stat">
-    <span class="stat-num">20+ yrs</span>
+    <span class="stat-num">20+ yrs  · multi-OEM</span>
     <span class="stat-label">Delivering complex, multi-team software programs</span>
   </div>
   <div class="stat">
-    <span class="stat-num">ASIL-B &middot; ASPICE L2</span>
-    <span class="stat-label">Shipping inside highly regulated environments</span>
+    <span class="stat-num">Embedded · AI</span>
+    <span class="stat-label">C/C++, FPGA, RTOS, ASIL-B → RAG, pgvector, LLMs in production</span>
   </div>
   <div class="stat">
-    <span class="stat-num">AtlasMind LLM backends</span>
-    <span class="stat-label">Runtime-switchable &mdash; Ollama, vLLM, Groq, AWS Bedrock, OpenAI-compatible</span>
+    <span class="stat-num">AtlasMind &middot; Live on OCI</span>
+    <span class="stat-label">Solo-deployed on Oracle Cloud · replaces 20+ hrs/week of Jira reporting</span>
   </div>
 </div>
 

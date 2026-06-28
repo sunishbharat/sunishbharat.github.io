@@ -75,7 +75,7 @@
   color: #0f172a;
 }
 
-/* Card grids — used on Home, Projects, and anywhere with `grid cards` */
+/* Card grids - used on Home, Projects, and anywhere with `grid cards` */
 .md-typeset .grid.cards > ul > li,
 .md-typeset .grid.cards > ol > li {
   border: 1px solid var(--md-default-fg-color--lightest);
@@ -180,6 +180,14 @@
   margin: 0;
   background: var(--md-default-bg-color);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  position: relative;
+}
+
+/* Stretched link: make entire card clickable via the post title anchor */
+.md-post--excerpt .md-post__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 .md-post--excerpt:hover {
   transform: translateY(-3px);
@@ -303,4 +311,23 @@
   .md-content__inner:has(.md-post--excerpt) {
     grid-template-columns: 1fr;
   }
+}
+
+/* ============================================================
+   Left-sidebar blog post titles: collapse to one line,
+   reveal the full title on hover
+   ============================================================ */
+.md-sidebar--primary [data-md-component="toc"] .md-nav__link {
+  display: block;
+}
+.md-sidebar--primary [data-md-component="toc"] .md-nav__link,
+.md-sidebar--primary [data-md-component="toc"] .md-nav__link .md-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color .15s ease;
+}
+.md-sidebar--primary [data-md-component="toc"] .md-nav__link:hover {
+  background: var(--md-code-bg-color);
+  border-radius: 6px;
 }

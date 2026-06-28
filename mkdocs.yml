@@ -71,6 +71,7 @@ plugins:
       blog_dir: blog
       authors_file: "{blog}/.authors.yml"
       categories: true
+      blog_toc: true
 
 markdown_extensions:
   - attr_list
