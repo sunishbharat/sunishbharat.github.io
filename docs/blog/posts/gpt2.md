@@ -12,6 +12,8 @@ description: What I learned building GPT-2 from scratch in PyTorch - tokenizatio
 
 My career has been in software delivery, embedded systems, automotive, satellite. AI was never part of my job description. I came to it entirely on my own, out of curiosity, during evenings and weekends, reading papers and watching the field move faster than anything I had seen before. At some point that curiosity stopped being enough. I could read about transformers and follow the concepts, but I had never actually built one. I knew the vocabulary without knowing the substance. That bothered me enough to do something about it.
 
+<!-- more -->
+
 So I built GPT-2 from scratch. Not as a tutorial to follow along to, but as a personal project to genuinely understand what I was managing. The implementation follows Sebastian Raschka's excellent book *Build a Large Language Model (From Scratch)*, which I'd recommend to anyone who wants the same, rigorous without being inaccessible. The code is on [GitHub](https://github.com/sunishbharat/llm-from-the-ground-up){ target="_blank" } and runs on Google Colab.
 
 A big part of the foundation came from [Andrej Karpathy's](https://karpathy.ai){ target="_blank" } videos. I watched almost all of them, spending hours and days going through each one line by line, pausing, rewinding, running the code alongside. It sounds like a lot of time and it was, but it was worth every minute. Karpathy has a way of making things that feel intimidating on paper become genuinely clear when you see them built step by step. His videos made my fundamentals solid in a way that reading alone never quite does.

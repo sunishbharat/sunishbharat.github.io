@@ -16,6 +16,8 @@ After decades of managing software programs across different industries, I still
 
 Different reports for different audiences with a variety of charts: everyone needed a different view of the same data. Should I export to Excel and create a pivot table, or use dashboard reports by manually creating each type of chart, or use a third-party vendor tool? The choices are many but integration effort and future reliability are always a question. And there is the added burden of knowing how to query using JQL, SQL, MDX, or whatever the tool demands.
 
+<!-- more -->
+
 To overcome all of these problems, I turned to AI, offloading the heavy lifting and focusing on letting it generate the right charts and queries. This is what **AtlasMind** does: give it a question in plain English about your project and you get charts rendered with tables that can be filtered and used for reports with a single click.
 
 AtlasMind is live at [atlasmind.de](https://atlasmind.de){ target="_blank" }. It runs against the public Apache Jira server. Here is what it looks like in practice:

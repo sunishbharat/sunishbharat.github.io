@@ -12,6 +12,8 @@ description: How I built a production RAG pipeline using Docling and pgvector wi
 
 Every RAG tutorial I found started the same way: `pip install langchain`, followed by 15 lines of boilerplate that somehow parsed a PDF, embedded it, stored it, and retrieved it - all without explaining what any of it was actually doing. I kept staring at those tutorials thinking: I know the output, but I have no idea what's happening between input and search result.
 
+<!-- more -->
+
 So I built [docling-pgvector](https://github.com/sunishbharat/docling-pgvector){ target="_blank" } - a clean RAG pipeline with no orchestration framework involved. Just IBM's Docling for parsing, SentenceTransformers for embeddings, and pgvector on PostgreSQL as the vector store. The whole thing fits in a few hundred lines of Python and I understand every single one of them.
 
 ## Why Docling?
