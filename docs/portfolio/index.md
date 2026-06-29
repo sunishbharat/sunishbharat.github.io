@@ -17,6 +17,14 @@ A showcase of both hand-built AI applications and large-scale technical systems 
 
     `Python` `FastAPI` `pgvector` `vLLM` `Groq` `Oracle Cloud`
 
+-   **[AtlasMind-Netra: AI Agent and MCP Server for Jira](projects/atlasmind-netra.md)**
+
+    ---
+
+    Conversational disambiguation layer and MCP server for AtlasMind. Clarifies ambiguous Jira queries with one targeted question, learns team conventions, and exposes tools to Claude Code, Cursor, and any MCP-compatible client.
+
+    `Python` `PydanticAI` `MCP` `Groq` `FastAPI`
+
 -   **[GPT-2 Transformer From Scratch](projects/gpt2.md)**
 
     ---
@@ -24,6 +32,14 @@ A showcase of both hand-built AI applications and large-scale technical systems 
     Complete GPT-2 decoder-only transformer built from the ground up: custom byte-pair tokenization, multi-head causal self-attention, feedforward layers, and training loops.
 
     `Python` `PyTorch` `Transformers` `Deep Learning`
+
+-   **[limitless-llm: Large Document Pipeline for Free-Tier LLMs](../blog/posts/limitless-llm.md)**
+
+    ---
+
+    Open-source Python pipeline for processing large documents reliably on free-tier LLMs. Rolling TPM rate limiter, sentence-aware chunking with bidirectional context overlap, and hierarchical merge with conflict detection.
+
+    `Python` `LiteLLM` `Groq` `Rate Limiting` `Open Source`
 
 -   **[Automated ASPICE Compliance Pipeline](projects/aspice-pipeline.md)**
 

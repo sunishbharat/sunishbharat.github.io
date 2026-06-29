@@ -36,6 +36,65 @@ LLM routing is runtime-switchable across 5 backends with no restart required, en
 
 Deployed solo on an Oracle Cloud A1 Flex instance (Ampere ARM architecture) using Docker Compose, with Tailscale for secure tunneling and zero-cost ingress.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph Callers["Callers"]
+        AM["core/atlasmind.py\nAtlasMind"]
+        SAN["core/jql_sanitizer.py\nJqlSanitizer"]
+    end
+
+    subgraph RAG["rag/ module"]
+        JE["JQL_Embeddings\njql_embeddings.py"]
+        JFE["Jira_Field_Embeddings\njira_field_embeddings.py"]
+        JFVE["JiraFieldValueEmbeddings\njira_field_value_embeddings.py"]
+        JAE["JiraAssetEmbeddings\njira_asset_embeddings.py"]
+        SM["seed_manager\nseed_manager.py"]
+    end
+
+    subgraph Infra["Shared Infrastructure"]
+        DP["DocumentProcessor\nsentence_transformers"]
+        PGV["PGVectorClient\npsycopg2"]
+    end
+
+    subgraph Tables["pgvector Tables"]
+        T1["jql_annotations"]
+        T2["jira_field_annotations"]
+        T3["jira_field_values"]
+        T4["jira_asset_values"]
+        T5["seed_metadata"]
+    end
+
+    AM -->|"search_sample_jql_embeddings_db"| JE
+    AM -->|"search_jira_fields\nfetch_field_mappings\nfetch_allowed_values\nfetch_asset_field_ids\nfind_similar_field_name"| JFE
+    AM -->|"seed · find_similar_values_by_embedding"| JFVE
+    AM -->|"seed · find_similar_values_by_embedding"| JAE
+    SAN -->|"find_similar_values\nfind_field_for_value"| JFVE
+
+    JE --> SM
+    JFE --> SM
+    JFVE --> SM
+    JAE --> SM
+
+    JE --> DP
+    JFE --> DP
+    JFVE --> DP
+    JAE --> DP
+
+    JE --> PGV
+    JFE --> PGV
+    JFVE --> PGV
+    JAE --> PGV
+    SM --> PGV
+
+    JE --> T1
+    JFE --> T2
+    JFVE --> T3
+    JAE --> T4
+    SM --> T5
+```
+
 ## Demo
 
 ![AtlasMind dashboard demo](../../assets/Atlasmind_tutorial-1.gif)
@@ -54,3 +113,5 @@ Deployed solo on an Oracle Cloud A1 Flex instance (Ampere ARM architecture) usin
 
 [View Code (GitHub) :fontawesome-brands-github:](https://github.com/sunishbharat/atlasMind-Lite){ .md-button target="_blank" }
 [Live Site :material-arrow-top-right:](https://atlasmind.de){ .md-button .md-button--primary target="_blank" }
+[Read: Why I Built AtlasMind :material-arrow-right:](../../blog/posts/atlasmind.md){ .md-button }
+[Read: Building AtlasMind-Netra :material-arrow-right:](../../blog/posts/atlasmind-netra-mcp-server.md){ .md-button }

@@ -8,7 +8,7 @@ authors:
 description: The story of building AtlasMind - a plain-English to JQL query engine with a self-correcting agentic loop, RAG pipeline, and multi-backend LLM routing. Deployed solo on Oracle Cloud.
 ---
 
-# Why I Built My Own AI Project Management Assistant, and What I Learned
+# AtlasMind: My Own AI Assistant for Project Management
 
 *Originally published on [DEV Community](https://dev.to/sunishb/why-i-built-my-own-ai-project-management-assistant-and-what-i-learned-5fc6){ target="_blank" }*
 
@@ -52,6 +52,63 @@ It classifies the user query into three paths: a general pipeline, a JQL pipelin
 ### RAG Pipeline
 
 When a query is classified as JQL, it follows the RAG pipeline. The system uses Sentence Transformers and pgvector to store JQL annotations, Jira fields, and associated values as embeddings. At query time, the user's question is embedded and compared against stored vectors. The system pulls the top 5 nearest neighbours using L2 distance between the query and available Jira fields.
+
+```mermaid
+flowchart TD
+    subgraph Callers["Callers"]
+        AM["core/atlasmind.py\nAtlasMind"]
+        SAN["core/jql_sanitizer.py\nJqlSanitizer"]
+    end
+
+    subgraph RAG["rag/ module"]
+        JE["JQL_Embeddings\njql_embeddings.py"]
+        JFE["Jira_Field_Embeddings\njira_field_embeddings.py"]
+        JFVE["JiraFieldValueEmbeddings\njira_field_value_embeddings.py"]
+        JAE["JiraAssetEmbeddings\njira_asset_embeddings.py"]
+        SM["seed_manager\nseed_manager.py"]
+    end
+
+    subgraph Infra["Shared Infrastructure"]
+        DP["DocumentProcessor\nsentence_transformers"]
+        PGV["PGVectorClient\npsycopg2"]
+    end
+
+    subgraph Tables["pgvector Tables"]
+        T1["jql_annotations"]
+        T2["jira_field_annotations"]
+        T3["jira_field_values"]
+        T4["jira_asset_values"]
+        T5["seed_metadata"]
+    end
+
+    AM -->|"search_sample_jql_embeddings_db"| JE
+    AM -->|"search_jira_fields\nfetch_field_mappings\nfetch_allowed_values\nfetch_asset_field_ids\nfind_similar_field_name"| JFE
+    AM -->|"seed · find_similar_values_by_embedding"| JFVE
+    AM -->|"seed · find_similar_values_by_embedding"| JAE
+    SAN -->|"find_similar_values\nfind_field_for_value"| JFVE
+
+    JE --> SM
+    JFE --> SM
+    JFVE --> SM
+    JAE --> SM
+
+    JE --> DP
+    JFE --> DP
+    JFVE --> DP
+    JAE --> DP
+
+    JE --> PGV
+    JFE --> PGV
+    JFVE --> PGV
+    JAE --> PGV
+    SM --> PGV
+
+    JE --> T1
+    JFE --> T2
+    JFVE --> T3
+    JAE --> T4
+    SM --> T5
+```
 
 ### LLM Orchestrator
 

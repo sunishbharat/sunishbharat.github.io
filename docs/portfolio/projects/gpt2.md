@@ -49,3 +49,4 @@ Functional GPT-2 architecture that trains and generates coherent text. The prima
 ## Links
 
 [View Code (GitHub) :fontawesome-brands-github:](https://github.com/sunishbharat/llm-from-the-ground-up){ .md-button target="_blank" }
+[Read article :material-arrow-right:](../../blog/posts/gpt2.md){ .md-button }

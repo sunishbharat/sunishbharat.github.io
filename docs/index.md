@@ -138,25 +138,25 @@ A rare combination: **safety-critical program delivery** and hands-on **producti
 
 <div class="grid cards" markdown>
 
--   **Why I Built My Own AI Project Management Assistant**
+-   **Building AtlasMind-Netra: An AI Agent and MCP Server for Jira**
 
     ---
 
-    *May 22, 2026 - 8 min read*
+    *June 28, 2026 - 8 min read*
 
-    The story of building AtlasMind - a plain-English to JQL query engine with a self-correcting agentic loop, RAG pipeline, and multi-backend LLM routing. Deployed solo on Oracle Cloud.
+    How I built the AI agent and MCP server layer of AtlasMind - clarifying ambiguous Jira queries through conversation before dispatching to the JQL pipeline.
 
-    [Read article :material-arrow-right:](blog/posts/atlasmind.md)
+    [Read article :material-arrow-right:](blog/posts/atlasmind-netra-mcp-server.md)
 
--   **Building a RAG Pipeline with Docling and pgvector: Without LangChain**
+-   **Processing Large Documents on Free-Tier LLMs Without Hitting Rate Limits**
 
     ---
 
-    *June 5, 2026 - 10 min read*
+    *June 29, 2026 - 10 min read*
 
-    How I built a production RAG pipeline without LangChain - PDF parsing, structured table extraction with Docling, and vector search with pgvector directly on PostgreSQL.
+    How I built limitless-llm - an open-source Python tool for reliable large document processing on free-tier LLMs, with a rolling TPM rate limiter and bidirectional context continuity.
 
-    [Read article :material-arrow-right:](blog/posts/docling-pgvector.md)
+    [Read article :material-arrow-right:](blog/posts/limitless-llm.md)
 
 </div>
 
@@ -164,7 +164,7 @@ A rare combination: **safety-critical program delivery** and hands-on **producti
 
 ## Contact { #contact }
 
-I am open to discussing technical program management, engineering leadership, or AI delivery roles across Europe. **Available for contract or full-time.**
+I am open to discussing technical program management, engineering leadership, or AI delivery roles across Europe.
 
 [sunishb@gmail.com](mailto:sunishb@gmail.com){ .md-button .md-button--primary }
 [LinkedIn :fontawesome-brands-linkedin:](https://linkedin.com/in/sunishbharathan){ .md-button target="_blank" }

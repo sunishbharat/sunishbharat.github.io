@@ -8,7 +8,7 @@ authors:
 description: How I built AtlasMind-Netra - the AI agent and MCP server layer of AtlasMind that clarifies ambiguous Jira queries through conversation before dispatching to the JQL pipeline.
 ---
 
-# Building AtlasMind-Netra: An AI Agent and MCP Server for Jira
+# AtlasMind-Netra: An AI Agent and MCP Server for Jira
 
 AtlasMind started as a plain-English to JQL query engine. The core loop was straightforward: you type a question, the system embeds it, retrieves the nearest Jira fields from pgvector, constructs a JQL query, and returns a chart. It works. But I kept running into the same class of problem - ambiguous queries.
 
@@ -36,17 +36,15 @@ Netra implements exactly this. It classifies whether the incoming query is speci
 
 The system has two distinct layers that work in sequence.
 
-```
-User Query
-   │
-   ▼
-Netra AI Agent           ← conversational disambiguation
-   │  clarify or dispatch
-   ▼
-AtlasMind MCP Server     ← tool execution layer
-   │  JQL pipeline + pgvector + Jira REST API
-   ▼
-Structured Response      ← charts, tables, summaries
+```mermaid
+flowchart TD
+    A[User Query] --> B[Netra AI Agent\nconversational disambiguation]
+    B --> C{Specific enough?}
+    C -- Yes --> E[AtlasMind MCP Server\nJQL pipeline + pgvector + Jira REST API]
+    C -- Ambiguous --> D[Ask one targeted question]
+    C -- Out of scope --> F[Clear explanation\nno API call]
+    D --> A
+    E --> G[Structured Response\ncharts, tables, summaries]
 ```
 
 The agent layer is responsible for everything before a Jira API call is made. The MCP server layer is responsible for everything after.
@@ -70,6 +68,50 @@ The MCP server is the execution layer. Once Netra has established that the query
 The MCP protocol makes this composable. Coding assistants like Claude Code or Cursor can connect to the server directly and use the same tools programmatically. The same toolchain that powers the conversational interface is also accessible as structured function calls from any MCP-compatible client.
 
 Under the hood, the tool execution follows the same architecture as the original AtlasMind backend: pgvector field retrieval, LLM-based JQL generation with the 7-pass sanitizer, the self-correcting feedback loop against the Jira REST API. Netra adds the conversational envelope around it.
+
+### show_in_ui: Chart Rendering in the Browser
+
+When a query is dispatched with `show_in_ui=true`, the result does not stay inside the MCP host. Netra injects the generated JQL into the live browser session so the chart renders directly in the AtlasMind UI - tables, ECharts visualisations, and one-click PNG/PDF export, all client-side.
+
+The browser is the only renderer. No rendered binaries flow through Netra-mcp. The inject is best-effort: if no browser tab is connected, the data result is unaffected and `ui_injected: false` is returned with an error note.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Host as MCP Host
+    participant Netra as Netra-mcp
+    participant Lite as AtlasMindLiteClient
+    participant Backend as Backend :8000
+    participant Bridge as Bridge :8001
+    participant Browser as Browser (chat UI)
+
+    Note over Browser,Bridge: precondition: browser tab open,<br/>SSE stream connected (GET /api/mcp/stream)
+
+    Host->>Netra: query_jira(query, session_id, show_in_ui=true)
+    Netra->>Lite: query(clarified_query, limit)
+    Lite->>Backend: POST /query
+    Backend-->>Lite: 200 {jql, issues, chart_spec, ...}
+    Lite-->>Netra: LiteQueryResult
+
+    alt jql was generated
+        Netra->>Bridge: POST /api/mcp/inject {"query": "<jql> /raw", "request_id"}
+        Note right of Netra: trailing "/raw" flag tells the bridge<br/>to run literal JQL, no second LLM call
+        Bridge-->>Netra: 202 accepted
+
+        Bridge->>Browser: SSE event: inject
+        Browser->>Bridge: POST /api/query ("<jql> /raw")
+        Bridge->>Backend: GET /query?q=<jql>&request_id=...
+        Backend-->>Bridge: issues + chart_spec (no LLM - /raw skips generation)
+        Bridge-->>Browser: response
+        Browser->>Browser: render table + ECharts chart (export PNG/PDF = one click, client-side)
+
+        Netra->>Netra: ui_injected = true
+    else no JQL generated
+        Netra->>Netra: errors.append("chart not shown in UI: no JQL was generated")
+    end
+
+    Netra-->>Host: QueryResponse(ui_injected=true, jql, issues, chart_spec)
+```
 
 ## What the Clarification Loop Actually Looks Like
 

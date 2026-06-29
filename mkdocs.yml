@@ -7,6 +7,7 @@ nav:
   - Projects:
     - Overview: portfolio/index.md
     - AtlasMind AI Assistant: portfolio/projects/atlasmind.md
+    - AtlasMind-Netra MCP Server: portfolio/projects/atlasmind-netra.md
     - GPT-2 From Scratch: portfolio/projects/gpt2.md
     - ASPICE Pipeline: portfolio/projects/aspice-pipeline.md
     - CAN Simulator: portfolio/projects/can-simulator.md
@@ -83,7 +84,11 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.details
   - pymdownx.critic
   - pymdownx.emoji:
@@ -94,6 +99,7 @@ markdown_extensions:
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js
+  - https://unpkg.com/mermaid@11/dist/mermaid.min.js
 
 copyright: |
   &copy; 2025 <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener">Sunish Bharathan</a>. All rights reserved.
