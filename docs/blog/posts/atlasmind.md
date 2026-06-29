@@ -8,7 +8,7 @@ authors:
 description: The story of building AtlasMind - a plain-English to JQL query engine with a self-correcting agentic loop, RAG pipeline, and multi-backend LLM routing. Deployed solo on Oracle Cloud.
 ---
 
-# AtlasMind: My Own AI Assistant for Project Management
+# Why I Built My Own AI Project Management Assistant – and What I Learned
 
 *Originally published on [DEV Community](https://dev.to/sunishb/why-i-built-my-own-ai-project-management-assistant-and-what-i-learned-5fc6){ target="_blank" }*
 
