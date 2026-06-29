@@ -1,0 +1,1074 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical Program Manager - Engineering Delivery and AI Systems">
+      
+      
+      
+        <link rel="canonical" href="https://sunishbharat.github.io/blog/2026/06/29/atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch/">
+      
+      
+        <link rel="prev" href="../limitless-llm-large-documents-on-free-tier-llms-that-actually-work/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch - Sunish Bharathan</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/hero.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch - Sunish Bharathan" />
+<meta property="og:description" content="Technical Program Manager - Engineering Delivery and AI Systems" />
+<meta property="og:image" content="https://sunishbharat.github.io/assets/images/social/blog/2026/06/29/atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://sunishbharat.github.io/blog/2026/06/29/atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch - Sunish Bharathan" />
+<meta property="twitter:description" content="Technical Program Manager - Engineering Delivery and AI Systems" />
+<meta property="twitter:image" content="https://sunishbharat.github.io/assets/images/social/blog/2026/06/29/atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Sunish Bharathan" class="md-header__button md-logo" aria-label="Sunish Bharathan" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2M9.3 19H7l7.7-14H17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sunish Bharathan
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../portfolio/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Sunish Bharathan" class="md-nav__button md-logo" aria-label="Sunish Bharathan" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2M9.3 19H7l7.7-14H17z"/></svg>
+
+    </a>
+    Sunish Bharathan
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/atlasmind/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AtlasMind AI Assistant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/atlasmind-netra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AtlasMind-Netra MCP Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/gpt2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT-2 From Scratch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/aspice-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASPICE Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/can-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAN Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/sband-telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S-Band Telemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/sunishbharat" alt="Sunish Bharathan">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://linkedin.com/in/sunishbharathan">Sunish Bharathan</a>
+                        
+                      </strong>
+                      <br>
+                      Technical Program Manager - Engineering Delivery and AI Systems
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-06-29 00:00:00+00:00" class="md-ellipsis">June 29, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/ai/">AI</a>, 
+                              <a href="../../../../category/engineering/">Engineering</a>, 
+                              <a href="../../../../category/jira/">Jira</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              12 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-actually-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it actually does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-query-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The query router
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-llm-backends-one-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five LLM backends, one codebase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-pgvector-knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pgvector knowledge base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The frontend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-query-flow-looks-like-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the query flow looks like end to end
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-learned-building-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I learned building this
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-the-code-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where the code is
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch">AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch</h1>
+<p>Every Jira user I have worked with over the years has the same complaint. Not about Jira itself. About JQL. You know what you want. You want the open bugs assigned to you that were created this sprint, sorted by priority. You just cannot remember if it is <code>issuetype = Bug</code> or <code>issueType = Bug</code>, whether it takes <code>currentUser()</code> or just your username, or whether <code>sprint in openSprints()</code> is even valid syntax on your server version. So you open the JQL documentation, spend five minutes constructing the query, paste it in, get a validation error, fix it, and then you have what you wanted. Every time.</p>
+<p>AtlasMind-Lite is my attempt to fix that loop. You type what you want in plain English. It figures out the JQL, runs it against your Jira instance, and returns structured results with a chart suggestion. The whole thing runs on free-tier LLM APIs, works with local Ollama, and can swap between five different LLM backends without changing anything other than an environment variable.</p>
+<!-- more -->
+
+<h2 id="what-it-actually-does">What it actually does</h2>
+<p>The core idea is simple: natural language in, Jira results out. But the implementation is not simple, because JQL is not simple. Field names vary between Jira Cloud and Jira Server. Allowed values for fields like status or issuetype are project-specific. The model has no way to know what your sprint is called or what your custom fields are named unless you tell it.</p>
+<p>The way AtlasMind-Lite solves this is with a RAG pipeline that is deeply aware of your specific Jira instance. Before the model ever sees your query, the system has already retrieved the three most relevant JQL examples from a local vector store, the five most relevant field descriptions (with allowed values), and any similar values from your Jira field database. The model gets a prompt that looks like: here are some example queries and their JQL, here are the relevant fields and what values they accept, now generate JQL for this query. It produces structured JSON with a <code>jql</code> field, an <code>answer</code>, and a <code>chart_spec</code>.</p>
+<p>Then it runs a 7-pass deterministic sanitizer on the output before touching Jira. This catches the common failure modes: LIMIT clauses (which Jira rejects), unquoted multi-word field names, arithmetic in ORDER BY expressions, and numeric values wrapped in quotes. Most of these do not need an LLM to fix. They are pattern issues and pattern matching handles them without spending any tokens.</p>
+<p>After that, it validates the JQL against the Jira API with a zero-result search before running the real query. If Jira rejects it, the error goes back into the prompt and the model gets one more chance to fix it. Up to four attempts total.</p>
+<h2 id="the-query-router">The query router</h2>
+<p>Not every question you ask is a JQL question. "What is the difference between a bug and a task?" is a general question. Sending it through the JQL pipeline is wasteful and produces a bad answer.</p>
+<p>The system has a dedicated query router that classifies each query with a fast LLM call before doing anything else. General questions get answered immediately. JQL queries go through the full RAG pipeline. There is also a <code>/jql</code> and <code>/general</code> flag you can append to any query to force the route if the classifier gets it wrong.</p>
+<p>The two-pass approach is used for Ollama specifically. The first call classifies. The second call generates the answer. For cloud backends like Groq, Claude, and vLLM, the same call handles both classification and generation.</p>
+<h2 id="five-llm-backends-one-codebase">Five LLM backends, one codebase</h2>
+<p>One of the things I wanted from the start was to not be locked into any single provider. The backend is structured so that every LLM interaction goes through a common interface, and you switch between them with a single environment variable.</p>
+<p>The five backends are Ollama (local, default), Groq (cloud), vLLM (GPU inference server), Anthropic Claude direct, and AWS Bedrock. Each has its own client class but they all implement the same <code>generate_jql</code> interface. The Claude client adds prompt caching on the system block to reduce token costs on repeated queries. The vLLM client auto-detects the loaded model from the <code>/v1/models</code> endpoint so you do not have to specify it manually. If vLLM is unreachable at startup, it falls back to Ollama automatically.</p>
+<p>The same LLM client instance is shared between the query router, the chart spec generator, and the JQL generation step. One initialization, consistent behaviour.</p>
+<h2 id="the-pgvector-knowledge-base">The pgvector knowledge base</h2>
+<p>All the domain knowledge lives in four pgvector tables, each seeded from a different source and hash-gated so re-encoding only happens when the source files actually change.</p>
+<p><code>jql_annotations</code> holds annotated query/JQL pairs, seeded from a markdown file. At query time, the top three nearest examples are retrieved and injected into the prompt. These are the few-shot examples that teach the model what valid JQL looks like for this instance.</p>
+<p><code>jira_field_annotations</code> holds field descriptions with allowed values, fetched automatically from the Jira REST API on first run. The top five nearest fields for each query are retrieved and included in the prompt. This is how the model knows that your "Assignee" field is <code>assignee</code> and your custom "Squad" field is <code>customfield_10042</code>.</p>
+<p><code>jira_field_values</code> holds one row per field/value combination for cosine similarity correction. When the model generates a value like <code>in progress</code> and your Jira actually has <code>In Progress</code>, the sanitizer catches it and corrects it without a retry. Values within a configurable L2 distance threshold are auto-corrected. Values further out but still plausible are injected as hints into the retry prompt.</p>
+<p><code>jira_asset_values</code> is for Jira Assets fields, which require AQL syntax and object labels. These are fetched, embedded, and stored the same way as field values.</p>
+<p>All four tables are seeded on startup, but seeding is skipped if the source file MD5 has not changed since the last run. You get consistent startup times once the initial seed is done.</p>
+<h2 id="the-frontend">The frontend</h2>
+<p>The frontend is a separate repo (<a href="https://github.com/sunishbharat/AtlasMind-frontendUI">AtlasMind-frontendUI</a>) built with Svelte 5 and Vite. It sits between you and the backend as a bridge server on port 8001, which proxies requests to the AtlasMind backend on port 8000.</p>
+<p>The UI has three views. The hierarchy map shows epics, stories, and sub-tasks as a linked tree with animated SVG connections. Hovering any card highlights its connections across the other views. The issue table shows the flat backlog with indented hierarchy and synchronized hover state. The AI chart tab renders charts auto-generated from the last query result using Apache ECharts.</p>
+<p>The chat panel has two modes. Demo mode uses locally bundled sample sprint data and works with no backend at all. Live mode sends queries to the AtlasMind backend, which generates JQL and queries your Jira instance. When a live query returns results, the view switches automatically to the AI chart tab and additional auto-generated chart tabs appear alongside the one the model specified.</p>
+<p>Authentication is handled with a PAT (Personal Access Token) that you enter in the chat panel. It is saved to localStorage and sent as an <code>X-Jira-Token</code> header on every request. The backend forwards it to the Jira REST API per-request. No credentials are stored server-side. For Docker or server deployments, you can set <code>JIRA_PAT</code> as an environment variable and skip the UI prompt entirely.</p>
+<h2 id="architecture">Architecture</h2>
+<pre class="mermaid"><code>flowchart TD
+    subgraph EntryPoints["Entry Points"]
+        CLI["app.py\nCLI — REPL / single-shot"]
+        SRV["server.py\nFastAPI app — port 8000"]
+    end
+
+    subgraph Endpoints["HTTP Endpoints"]
+        HE["GET /health"]
+        ME["GET /meta"]
+        QG["GET /query"]
+        QP["POST /query"]
+        EV["POST /event"]
+    end
+
+    subgraph Helpers["Response Helpers"]
+        BR["_build_response"]
+        BD["_build_display_fields"]
+        EF["_extract_filters"]
+        ER["_error_response"]
+    end
+
+    subgraph Config["Configuration"]
+        ST["settings.py\nAll env-var defaults"]
+        JC["config/jira_config.py\nProfile loading"]
+        OV["cloud/oci_vault.py\nSecret resolution"]
+    end
+
+    subgraph Core["Core — owned by core module"]
+        AM["AtlasMind\norchestrator"]
+        CE["client_events\nCancel registry"]
+    end
+
+    CLI --&gt; AM
+    SRV --&gt; Endpoints
+    QG --&gt; CE
+    QP --&gt; CE
+    EV --&gt; CE
+    QG --&gt; AM
+    QP --&gt; AM
+    AM --&gt; BR
+    BR --&gt; BD
+    BR --&gt; EF
+    ST --&gt; SRV
+    ST --&gt; CLI
+    JC --&gt; BR
+    JC --&gt; ER
+    ST --&gt;|"resolve_secret at import"| OV</code></pre>
+<h2 id="what-the-query-flow-looks-like-end-to-end">What the query flow looks like end to end</h2>
+<p>You type "show me all high priority bugs created this week assigned to me" into the chat panel.</p>
+<p>The bridge server sends <code>POST /query</code> to the backend. The backend registers the request with a cancel token, then calls <code>AtlasMind.generate_jql()</code>. The query router makes a fast LLM call and classifies it as a JQL query. The RAG pipeline encodes the query into an embedding vector, runs parallel similarity searches against <code>jql_annotations</code> and <code>jira_field_annotations</code>, finds similar values in <code>jira_field_values</code>, and assembles the full prompt. The LLM generates structured JSON. The sanitizer runs its 7 passes. The system pre-validates the JQL with a zero-result Jira query. If it passes, the real paginated search runs. Results are normalised, enriched with computed fields like <code>effort_days</code> and <code>age_days</code>, and assembled into a <code>QueryResponse</code> with display fields, facet filters, and a chart spec. The bridge receives it and the frontend renders the hierarchy map and chart.</p>
+<p>If Jira rejects the JQL, the error is classified by type. A bad field name triggers a similarity search in <code>jira_field_annotations</code> to find the closest valid field, and that suggestion goes back into the retry prompt. A bad value triggers a cross-field similarity search in <code>jira_field_values</code>. Operator errors and EMPTY search errors are fixed deterministically without LLM involvement. Up to four total attempts, after which it surfaces a clear error rather than silently returning nothing.</p>
+<h2 id="what-i-learned-building-this">What I learned building this</h2>
+<p><strong>The JQL sanitizer saves more retries than the retry loop does.</strong> I added the retry loop first and assumed it would handle most correction cases. What I found was that a large fraction of the errors the model makes are structural, not semantic. LIMIT clauses, unquoted field names, arithmetic in ORDER BY. These are deterministic and cheap to fix. Moving them into a pre-execution sanitizer reduced the average number of Jira API calls per query significantly and made responses faster.</p>
+<p><strong>Seeding is an infrastructure problem, not a data problem.</strong> Getting the vector store populated correctly on first run, and keeping it in sync when the source data changes, turned out to be more work than the embedding itself. The MD5 hash-gated seed manager with a <code>seed_metadata</code> table is not elegant, but it solves the real problem: you do not want to wait for re-encoding on every startup, and you do not want stale embeddings after a Jira field configuration change.</p>
+<p><strong>Per-request auth headers are the right model for multi-tenant use.</strong> Baking credentials into server config means one credential per deployment. Forwarding <code>X-Jira-Token</code> and <code>X-Jira-Url</code> as per-request headers means the same backend instance can serve multiple Jira instances or multiple users with different access levels without a server restart.</p>
+<p><strong>Two modes in the frontend (Demo and Live) actually matter.</strong> It sounds like a nice-to-have. In practice it means anyone can try the UI without configuring a backend, which made it much easier to get feedback from colleagues who were not going to stand up a local instance just to see what it looked like.</p>
+<h2 id="where-the-code-is">Where the code is</h2>
+<p>The backend (FastAPI, pgvector, RAG pipeline, all five LLM clients) is at <a href="https://github.com/sunishbharat/atlasMind-Lite">github.com/sunishbharat/atlasMind-Lite</a>.</p>
+<p>The frontend (Svelte 5, bridge server, chart rendering, hierarchy view) is at <a href="https://github.com/sunishbharat/AtlasMind-frontendUI">github.com/sunishbharat/AtlasMind-frontendUI</a>.</p>
+<p>Both repos have READMEs with setup instructions and configuration details.</p>
+<hr />
+<ul>
+<li>Backend: <a href="https://github.com/sunishbharat/atlasMind-Lite">github.com/sunishbharat/atlasMind-Lite</a></li>
+<li>Frontend: <a href="https://github.com/sunishbharat/AtlasMind-frontendUI">github.com/sunishbharat/AtlasMind-frontendUI</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../limitless-llm-large-documents-on-free-tier-llms-that-actually-work/" class="md-footer__link md-footer__link--prev" aria-label="Previous: limitless-llm: Large Documents on Free-Tier LLMs That Actually Work">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                limitless-llm: Large Documents on Free-Tier LLMs That Actually Work
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener">Sunish Bharathan</a>. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/sunishbharat" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["search.suggest", "toc.integrate", "navigation.tabs", "navigation.expand", "navigation.sections", "navigation.instant", "navigation.instant.prefetch", "content.tooltips", "content.tabs.link", "content.code.copy", "navigation.footer"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
