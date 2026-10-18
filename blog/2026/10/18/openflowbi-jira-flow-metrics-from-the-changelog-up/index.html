@@ -1,0 +1,1157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How I built OpenFlowBI - a free, open-source alternative to eazyBI for Jira flow metrics, rebuilt from the full changelog with dlt, Postgres, Cube, and Superset - and the silent-data-loss bugs an architecture review found that the test suite never could.">
+      
+      
+      
+        <link rel="canonical" href="https://sunishbharat.github.io/blog/2026/10/18/openflowbi-jira-flow-metrics-from-the-changelog-up/">
+      
+      
+        <link rel="prev" href="../../../06/29/atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch/">
+      
+      
+        <link rel="next" href="../giving-an-ai-assistant-safe-write-access-to-jira/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>OpenFlowBI: Jira Flow Metrics From the Changelog Up - Sunish Bharathan</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/hero.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="OpenFlowBI: Jira Flow Metrics From the Changelog Up - Sunish Bharathan" />
+<meta property="og:description" content="How I built OpenFlowBI - a free, open-source alternative to eazyBI for Jira flow metrics, rebuilt from the full changelog with dlt, Postgres, Cube, and Superset - and the silent-data-loss bugs an architecture review found that the test suite never could." />
+<meta property="og:image" content="https://sunishbharat.github.io/assets/images/social/blog/2026/10/18/openflowbi-jira-flow-metrics-from-the-changelog-up.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://sunishbharat.github.io/blog/2026/10/18/openflowbi-jira-flow-metrics-from-the-changelog-up/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="OpenFlowBI: Jira Flow Metrics From the Changelog Up - Sunish Bharathan" />
+<meta property="twitter:description" content="How I built OpenFlowBI - a free, open-source alternative to eazyBI for Jira flow metrics, rebuilt from the full changelog with dlt, Postgres, Cube, and Superset - and the silent-data-loss bugs an architecture review found that the test suite never could." />
+<meta property="twitter:image" content="https://sunishbharat.github.io/assets/images/social/blog/2026/10/18/openflowbi-jira-flow-metrics-from-the-changelog-up.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#openflowbi-jira-flow-metrics-from-the-changelog-up" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Sunish Bharathan" class="md-header__button md-logo" aria-label="Sunish Bharathan" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2M9.3 19H7l7.7-14H17z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sunish Bharathan
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenFlowBI: Jira Flow Metrics From the Changelog Up
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../portfolio/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Sunish Bharathan" class="md-nav__button md-logo" aria-label="Sunish Bharathan" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2M9.3 19H7l7.7-14H17z"/></svg>
+
+    </a>
+    Sunish Bharathan
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/atlasmind/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AtlasMind AI Assistant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/atlasmind-netra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AtlasMind-Netra MCP Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/netra-confluence-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Netra MCP for Confluence & Jira
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/open-flow-bi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenFlowBI Jira Flow Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/gpt2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT-2 From Scratch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/aspice-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASPICE Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/can-simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CAN Simulator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/projects/sband-telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S-Band Telemetry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/sunishbharat" alt="Sunish Bharathan">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://linkedin.com/in/sunishbharathan">Sunish Bharathan</a>
+                        
+                      </strong>
+                      <br>
+                      Technical Program Manager - Engineering Delivery and AI Systems
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-10-18 00:00:00+00:00" class="md-ellipsis">October 18, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/engineering/">Engineering</a>, 
+                              <a href="../../../../category/jira/">Jira</a>, 
+                              <a href="../../../../category/open-source/">Open Source</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              10 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#borrowing-eazybis-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Borrowing eazyBI's model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-nothing-that-already-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build nothing that already exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-changelog-is-harder-than-it-looks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The changelog is harder than it looks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-fields-without-guessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing fields without guessing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bugs-the-tests-could-not-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The bugs the tests could not see
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#making-it-installable-by-non-developers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making it installable by non-developers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="openflowbi-jira-flow-metrics-from-the-changelog-up">OpenFlowBI: Jira Flow Metrics From the Changelog Up</h1>
+<p>As a program manager, the questions I care about most are not in Jira's current fields. How long does work actually sit in review? Where does it wait? Is throughput improving, or did we just close a lot of small tickets this sprint? The answers live in the changelog - every status transition every issue ever made.</p>
+<p>The tool I use to get at them is eazyBI. It imports Jira's change history and turns it into measures like <em>days in transition status</em>, and it does that well. It is also a paid app whose licence, on Jira Cloud, follows the user count of the entire Jira site - so a large organisation pays for thousands of seats even when only a few people read the dashboards.</p>
+<p>That raised a question I could not let go of: could the flow-metrics core of eazyBI be built entirely from free, open-source parts? So I built <a href="https://github.com/sunishbharat/open-flow-bi">OpenFlowBI</a>, a self-hosted pipeline for cycle time, time in status, and throughput. It works with Jira Cloud and Jira Server / Data Center, syncs incrementally, and installs with one script.</p>
+<p>This post covers the shape of the pipeline, the parts that are harder than they look, and the bugs that would have quietly produced wrong numbers.</p>
+<!-- more -->
+
+<p><strong>Links:</strong></p>
+<ul>
+<li>Source code: <a href="https://github.com/sunishbharat/open-flow-bi" target="_blank">github.com/sunishbharat/open-flow-bi</a></li>
+<li>Project page: <a href="../../../../../portfolio/projects/open-flow-bi/">OpenFlowBI: Open-Source Jira Flow Metrics</a></li>
+</ul>
+<h2 id="borrowing-eazybis-model">Borrowing eazyBI's model</h2>
+<p>eazyBI's design is proven, so I kept its shape and swapped every part for an open-source one:</p>
+<table>
+<thead>
+<tr>
+<th>eazyBI</th>
+<th>OpenFlowBI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jira import with change history</td>
+<td><code>flowbi extract</code>, built on dlt, into Postgres</td>
+</tr>
+<tr>
+<td>Choosing custom fields in the import options</td>
+<td><code>flowbi fields discover</code> and <code>promote</code>, guided by fill rates</td>
+</tr>
+<tr>
+<td>Transition Status dimension, days in transition status</td>
+<td>One row per status period per issue</td>
+</tr>
+<tr>
+<td>Cube of dimensions and measures</td>
+<td>A Cube semantic model with one <code>flow</code> view</td>
+</tr>
+<tr>
+<td>Reports and dashboards</td>
+<td>Apache Superset</td>
+</tr>
+</tbody>
+</table>
+<p>It is not a feature-for-feature replacement - eazyBI's calculated measures, multi-field history, and maturity go well beyond this. But for the flow questions above, the open-source stack is enough.</p>
+<h2 id="build-nothing-that-already-exists">Build nothing that already exists</h2>
+<p>Before writing code I wrote a library decision register: for every capability the pipeline needs, a decision to use a library, adapt one, or write it. The headline was that most of a "Jira extractor" is not Jira-specific at all. Pagination, incremental state, schema evolution, and loading into Postgres or Parquet are exactly what <a href="https://dlthub.com">dlt</a> does. Data-quality contracts are pandera. The CLI is typer, logging is structlog, timezones are pendulum.</p>
+<p>What is left is the irreducible, Jira-specific part - a few hundred lines by the register's estimate:</p>
+<ul>
+<li>detecting Cloud versus Server/DC and choosing the auth strategy</li>
+<li>a three-tier strategy for fetching complete changelogs</li>
+<li>mapping fields by name and type, since field IDs differ per instance</li>
+<li>the rules for when a changelog counts as complete, and where an issue's history starts</li>
+</ul>
+<p>That rule kept the project small enough to finish, and it focused the testing effort on the code that could actually be wrong in a way nobody else had already solved.</p>
+<h2 id="the-pipeline">The pipeline</h2>
+<pre class="mermaid"><code>flowchart LR
+    J[Jira] --&gt;|incremental| E[Extract\nissues + changelog]
+    E --&gt; R[(jira_raw)]
+    E -. dirty queue .-&gt; Q[(flowbi_ops)]
+    F[Fields\ndiscover + promote] --&gt; Q
+    R &amp; Q --&gt; T[Transform\nqueued issues only]
+    T --&gt; A[(analytics)]
+    A --&gt; C[Cube\nflow view]
+    C --&gt;|SQL API| S[Superset]</code></pre>
+<p>Four commands and two services:</p>
+<ol>
+<li><strong>Extract</strong> pulls new and changed issues and their full status history into a raw schema, and queues the changed issues.</li>
+<li><strong>Fields</strong> measures how often each field is actually filled in and records which ones to promote to real columns.</li>
+<li><strong>Transform</strong> rebuilds only the queued issues into an analytics schema: one row per issue, and one row per status period.</li>
+<li><strong>Cube</strong> turns those tables into named dimensions and measures, exposed as a single <code>flow</code> view. <strong>Superset</strong> connects to Cube's SQL API as if it were Postgres, so charts need no SQL.</li>
+</ol>
+<h2 id="the-changelog-is-harder-than-it-looks">The changelog is harder than it looks</h2>
+<p><strong>It records transitions, not state.</strong> An issue created straight into "To Do" has no transition into "To Do". Compute time in status from transitions alone and every issue's first status period disappears. The transform starts each issue's history at its creation date, with the initial status inferred from the first transition's "from" value.</p>
+<p><strong>It arrives in pages, through three APIs.</strong> Jira can embed the changelog in a search response, but the embedded copy is itself paginated and truncated for busy issues. So the extractor uses three tiers: the embedded changelog when it is complete, the bulk changelog endpoint (up to 1,000 issues per request) when it is not, and per-issue paging as the last resort. Every issue carries a <code>changelog_complete</code> flag, so incomplete history is never silently treated as complete.</p>
+<p><strong>Cloud search is eventually consistent.</strong> An update can become searchable some time after it happened. If the incremental watermark has already moved past that update's timestamp, the issue is never fetched. The fix is an overlap window: each run re-reads the last hour and lets idempotent merges absorb the duplicates.</p>
+<h2 id="choosing-fields-without-guessing">Choosing fields without guessing</h2>
+<p>A real Jira instance can have 200+ fields, most of them empty for any given project. Promoting all of them makes the analytics table unusable. Picking them by hand is not repeatable and leaves no record of why a column exists.</p>
+<p><code>flowbi fields discover</code> samples up to 5,000 issues and computes a fill rate per field, treating Jira's empty arrays and empty strings as unfilled. <code>flowbi fields promote</code> records the decision in a versioned log and queues a rebuild. The transform then materializes the column from data already in Postgres, without calling Jira again. Every column in the analytics table can be traced back to a recorded decision.</p>
+<h2 id="the-bugs-the-tests-could-not-see">The bugs the tests could not see</h2>
+<p>After the pipeline worked end to end, I wrote an architecture review: every module checked against the design documents, looking specifically for ways the numbers could be wrong. It found 19 issues. Six were critical, meaning data silently lost or wrong. The uncomfortable part was the review's own conclusion: most of them were invisible to the test suite, because they only appear with real timezones, real concurrency, real data volume, or a real Cloud tenant.</p>
+<p>The clearest example was the incremental cursor. It compared Jira's raw <code>updated</code> strings, and the comparison was lexical, not chronological. I confirmed it with a two-run probe:</p>
+<ol>
+<li>Run 1 advanced the watermark to <code>2024-10-27T02:30:00.000+0200</code> - 00:30 UTC.</li>
+<li>Run 2 saw an update at <code>2024-10-27T02:10:00.000+0100</code> - 01:10 UTC, forty minutes <em>later</em> in real time.</li>
+<li>The update was dropped, because as a string it sorts lower.</li>
+</ol>
+<p>Any Jira not running on UTC would lose updates in the daylight-saving fall-back hour every year, with no error anywhere. The fix was a timezone-aware datetime cursor, which also unlocked the overlap window above. Other critical findings included offset paging on Data Center that could skip issues while the result set shifted, and a bulk changelog fetch that was marked complete without being paginated.</p>
+<p>All six critical findings are fixed, each with a regression test. Four design-level findings remain open and are scoped separately.</p>
+<h2 id="making-it-installable-by-non-developers">Making it installable by non-developers</h2>
+<p>A flow-metrics tool is only useful if the people who want the metrics can run it. The quickstart script asks a few questions in a single menu, installs the Docker stack, loads 50 issues, and finishes with the dashboard URL and login. With the defaults it uses Apache's public Jira, so anyone can see it working before connecting their own instance. If it is interrupted, running it again picks up where it left off, and later runs only fetch what changed.</p>
+<p>Just as much care went into the failure paths: Docker not running, a corporate proxy breaking TLS, a wrong Jira token, Superset pointed at <code>localhost</code> instead of the Cube container. Each stops with a message that says what to do next, and the full output is saved to a log file for anyone asking for help.</p>
+<h2 id="what-i-learned">What I learned</h2>
+<p><strong>A string that looks like a timestamp is not a timestamp.</strong> Lexical comparison of ISO-8601 strings works right up until two values carry different UTC offsets. Treat time as typed data at the boundary, and test across a DST transition on purpose.</p>
+<p><strong>Read what your libraries actually do, not what you assumed.</strong> The decision register originally assumed dlt used httpx, and two httpx-only libraries - a response cache and a request mocker - sat in the project unused. Reconciling the register against the installed code showed dlt's REST client is built on requests, so neither could ever have worked. Both were removed. A decision register is only as good as its last check against reality.</p>
+<p><strong>Green tests are not evidence the numbers are right.</strong> Unit tests with recorded fixtures prove the code does what I intended. They cannot prove I intended the right thing for timezones, eventual consistency, or concurrent runs. A deliberate review against the design, looking only for silent data loss, found what hundreds of passing tests did not.</p>
+<p><strong>Semantic layers earn their place early.</strong> Putting Cube between Postgres and Superset felt like extra infrastructure for a small project. In practice it means "cycle time" is defined once, in the model, rather than re-derived in every chart - and a CI smoke job can query the <code>flow</code> view end to end on every push.</p>
+<h2 id="whats-next">What's next</h2>
+<p>The roadmap is a browser screen for choosing which fields to promote, row-level security so each user sees only their own projects, prebuilt images on a public registry, and deployment beyond a single Docker Compose host. Wiring Jira Cloud's reported rate-limit budget into the extractor is also still open.</p>
+<hr />
+<ul>
+<li>Source code: <a href="https://github.com/sunishbharat/open-flow-bi" target="_blank">github.com/sunishbharat/open-flow-bi</a></li>
+<li>Project page: <a href="../../../../../portfolio/projects/open-flow-bi/">OpenFlowBI: Open-Source Jira Flow Metrics</a></li>
+</ul>
+<p><small>eazyBI is a trademark of its owner. OpenFlowBI is an independent open-source project and is not affiliated with or endorsed by eazyBI.</small></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../../06/29/atlasmind-lite-a-natural-language-interface-for-jira-built-from-scratch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                AtlasMind-Lite: A Natural Language Interface for Jira, Built from Scratch
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../giving-an-ai-assistant-safe-write-access-to-jira/" class="md-footer__link md-footer__link--next" aria-label="Next: Giving an AI Assistant Safe Write Access to Jira">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Giving an AI Assistant Safe Write Access to Jira
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener">Sunish Bharathan</a>. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/sunishbharat" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in/sunishbharathan" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["search.suggest", "toc.integrate", "navigation.tabs", "navigation.expand", "navigation.sections", "navigation.instant", "navigation.instant.prefetch", "content.tooltips", "content.tabs.link", "content.code.copy", "navigation.footer"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

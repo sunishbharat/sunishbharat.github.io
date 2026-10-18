@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /search/
+Disallow: /search.html
+
+User-agent: scrapy
+Disallow: /
+
+Sitemap: https://sunishbharat.github.io/sitemap.xml
