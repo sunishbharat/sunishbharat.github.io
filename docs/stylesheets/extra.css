@@ -331,3 +331,13 @@
   background: var(--md-code-bg-color);
   border-radius: 6px;
 }
+
+/* ============================================================
+   Project pages: three cards side by side, accent-coloured icons
+   ============================================================ */
+.md-typeset .grid.cards.three-up {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+.md-typeset .grid.cards .twemoji.lg.middle {
+  color: var(--md-accent-fg-color);
+}

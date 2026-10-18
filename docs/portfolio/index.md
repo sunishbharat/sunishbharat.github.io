@@ -25,6 +25,22 @@ A showcase of both hand-built AI applications and large-scale technical systems 
 
     `Python` `PydanticAI` `MCP` `Groq` `FastAPI`
 
+-   **[Netra MCP: Confluence and Jira Read/Write Server](projects/netra-confluence-mcp.md)**
+
+    ---
+
+    MCP server that lets Claude or GitHub Copilot edit Confluence pages and - new in October 2026 - read, search, clone, bulk-create, and edit Jira issues. Dry-run by default, per-user credentials, deployed as a shared team server on Cloud Foundry.
+
+    `Python` `FastMCP` `MCP` `Jira` `Confluence` `Cloud Foundry`
+
+-   **[OpenFlowBI: Open-Source Jira Flow Metrics](projects/open-flow-bi.md)**
+
+    ---
+
+    A free, self-hosted alternative for the flow-metrics side of eazyBI. Cycle time, time in status, and throughput rebuilt from Jira's full history, for Jira Cloud and Server/DC - no licence, no per-user cost, installed with one script.
+
+    `Python` `dlt` `PostgreSQL` `Cube` `Superset` `Docker`
+
 -   **[GPT-2 Transformer From Scratch](projects/gpt2.md)**
 
     ---

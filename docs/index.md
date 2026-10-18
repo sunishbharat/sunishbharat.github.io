@@ -120,15 +120,25 @@ A rare combination: **safety-critical program delivery** and hands-on **producti
 
     [Read more :material-arrow-right:](portfolio/projects/atlasmind.md)
 
--   **GPT-2 Transformer From the Ground Up**
+-   **Netra MCP: Confluence and Jira Read/Write Server**
 
     ---
 
-    Built a functional GPT-2 transformer architecture from scratch in Python to understand tokenization, multi-head attention mechanisms, feedforward layers, training loops, and language model inference.
+    MCP server that lets Claude or GitHub Copilot edit Confluence pages and read, search, clone, bulk-create, and edit Jira issues. Dry-run by default, per-user credentials, deployed as a shared team server on Cloud Foundry.
 
-    `Python` `PyTorch` `Tokenization` `Deep Learning`
+    `Python` `FastMCP` `MCP` `Jira` `Confluence`
 
-    [Read more :material-arrow-right:](portfolio/projects/gpt2.md)
+    [Read more :material-arrow-right:](portfolio/projects/netra-confluence-mcp.md)
+
+-   **OpenFlowBI: Open-Source Jira Flow Metrics**
+
+    ---
+
+    Inspired by eazyBI, built to be a free alternative. See how long tickets spend in each status, where work waits, and how much gets finished - rebuilt from Jira's full history, in dashboards you host yourself.
+
+    `Python` `dlt` `PostgreSQL` `Cube` `Superset`
+
+    [Read more :material-arrow-right:](portfolio/projects/open-flow-bi.md)
 
 </div>
 

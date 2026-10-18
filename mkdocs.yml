@@ -8,6 +8,8 @@ nav:
     - Overview: portfolio/index.md
     - AtlasMind AI Assistant: portfolio/projects/atlasmind.md
     - AtlasMind-Netra MCP Server: portfolio/projects/atlasmind-netra.md
+    - Netra MCP for Confluence & Jira: portfolio/projects/netra-confluence-mcp.md
+    - OpenFlowBI Jira Flow Metrics: portfolio/projects/open-flow-bi.md
     - GPT-2 From Scratch: portfolio/projects/gpt2.md
     - ASPICE Pipeline: portfolio/projects/aspice-pipeline.md
     - CAN Simulator: portfolio/projects/can-simulator.md
